@@ -1,4 +1,4 @@
-baseURL = 'http://localhost:1313/'
+baseURL = 'https://yibie.github.io/hugo-theme-epistle/'
 languageCode = 'zh-cn'
 title = 'Epistle'
 theme = 'hugo-theme-epistle'
