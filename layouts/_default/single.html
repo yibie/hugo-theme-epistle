@@ -1,5 +1,5 @@
 {{ define "main" }}
-<article class="letter heti heti--serif" id="top">
+<article class="letter heti {{ .Params.heti_class | default "heti--serif" }}" id="top">
   <header class="letter-header">
     <h1 class="letter-title">{{ .Title }}</h1>
   </header>

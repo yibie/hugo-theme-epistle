@@ -2,7 +2,7 @@
 {{ $pages := where .Site.RegularPages "Section" "posts" }}
 {{ $latest := index $pages 0 }}
 {{ with $latest }}
-<article class="letter letter--preview heti heti--serif" id="top">
+<article class="letter letter--preview heti {{ .Params.heti_class | default "heti--serif" }}" id="top">
   <header class="letter-header">
     <h1 class="letter-title">{{ .Title }}</h1>
   </header>
