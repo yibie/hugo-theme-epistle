@@ -1,3 +1,9 @@
 # Agent and design documentation
 AGENTS.md
 DESIGN.md
+
+# Hugo build
+exampleSite/resources/
+exampleSite/public/
+exampleSite/.hugo_build.lock
+hugo_stats.json

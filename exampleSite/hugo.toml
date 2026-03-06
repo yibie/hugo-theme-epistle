@@ -1,0 +1,12 @@
+baseURL = 'http://localhost:1313'
+languageCode = 'zh-CN'
+title = '尺素'
+theme = 'epistle'
+
+disableKinds = ["taxonomy", "term"]
+summaryLength = 0
+
+[params]
+  author = "匿名"
+  description = "个人书信集"
+  valediction = "此致"
