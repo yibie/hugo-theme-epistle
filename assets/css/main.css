@@ -13,8 +13,8 @@
   --color-fold:    rgba(28, 35, 51, 0.08);
   --shadow-paper:  0 2px 20px rgba(0, 0, 0, 0.08);
 
-  --font-body:     "Source Han Serif SC", "Noto Serif SC", "STSong", "SimSun",
-                   "Inter", -apple-system, "Helvetica Neue", system-ui, sans-serif;
+  --font-body:     "Inter", -apple-system, "Helvetica Neue", system-ui,
+                   "Source Han Serif SC", "Noto Serif SC", "STSong", "SimSun", serif;
   --font-signature: "Caveat", "Dancing Script", cursive;
 
   --width-content: 44rem;
@@ -502,12 +502,29 @@ body {
 .heti {
   color: var(--color-ink);
 }
-.heti .heti-meta {
+.heti .heti-meta,
+.heti-meta {
   color: var(--color-meta);
+  font-size: 0.8em;
+  font-style: normal;
+  letter-spacing: 0.02em;
 }
 .heti a {
   color: var(--color-accent);
 }
+
+/* ── 诗词落款居中 ── */
+.verse-byline {
+  text-align: center;
+  margin-top: -0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Heti 字号类的显式定义（确保跨主题可见） ── */
+.heti-x-large { font-size: 1.4em; }
+.heti-large   { font-size: 1.15em; }
+.heti-small   { font-size: 0.85em; }
+.heti-x-small { font-size: 0.7em; }
 
 /* ── 诗词版式：居中对齐 ── */
 .heti--poetry {

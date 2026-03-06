@@ -5,7 +5,10 @@
 */}}
 <div class="heti heti--poetry">
   {{- with .Get "title" }}
-  <h2>{{ . }}{{ with $.Get "dynasty" }}<span class="heti-meta heti-small">[{{ . }}]</span>{{ end }}{{ with $.Get "author" }}<span class="heti-meta heti-small">{{ . }}</span>{{ end }}</h2>
+  <h2>{{ . }}</h2>
+  {{- end }}
+  {{- if or ($.Get "dynasty") ($.Get "author") }}
+  <p class="heti-meta heti-small verse-byline">{{ with $.Get "dynasty" }}[{{ . }}]{{ end }}{{ with $.Get "author" }} {{ . }}{{ end }}</p>
   {{- end }}
   {{ .Inner | markdownify }}
 </div>
