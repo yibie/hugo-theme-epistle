@@ -177,6 +177,16 @@ body {
   line-height: 1.4;
 }
 
+.letter-body h1,
+.letter-body h2,
+.letter-body h3,
+.letter-body h4,
+.letter-body h5,
+.letter-body h6 {
+  font-family: "STKaiti", "KaiTi", "楷体", serif;
+  font-weight: 400;
+}
+
 .letter-date {
   font-size: 0.85rem;
   color: var(--color-meta);
