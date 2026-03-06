@@ -125,13 +125,16 @@ body {
   right: 0;
   top: 5rem;
   z-index: 200;
-  
+
   /* 信笺标签外观 */
   background: linear-gradient(135deg, #C4A77D 0%, #B89A6B 100%);
   color: #3D3225;
   border: none;
   border-radius: 6px 0 0 6px;
   padding: 0.6rem 0.75rem;
+
+  /* 宋体字体 */
+  font-family: "Songti SC", "STSong", "SimSun", "宋体", serif;
   
   /* 文字横排 */
   font-size: 0.875rem;
@@ -171,7 +174,7 @@ body {
 }
 
 .letter .letter-title {
-  font-family: "STKaiti", "KaiTi", "楷体", serif;
+  font-family: "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
   font-size: 2rem;
   font-weight: 400;
   line-height: 1.4;
@@ -183,7 +186,7 @@ body {
 .letter-body h4,
 .letter-body h5,
 .letter-body h6 {
-  font-family: "STKaiti", "KaiTi", "楷体", serif;
+  font-family: "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
   font-weight: 400;
 }
 
