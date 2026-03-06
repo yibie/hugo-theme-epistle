@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "zh-CN" }}">
+<head>
+  {{- partial "head.html" . -}}
+</head>
+<body data-style="{{ .Params.letter_style | default (.Site.Params.letterStyle | default "default") }}">
+  <div class="desk">
+    {{- partial "header.html" . -}}
+    <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+    <aside class="sidebar" id="sidebar" role="complementary" aria-label="信件归档">
+      {{- partial "sidebar.html" . -}}
+    </aside>
+    <div class="layout">
+      <main class="paper" role="main">
+        {{- block "main" . }}{{- end }}
+      </main>
+    </div>
+    {{- partial "footer.html" . -}}
+  </div>
+  <script src="//unpkg.com/heti/umd/heti-addon.min.js"></script>
+  <script>
+    const heti = new Heti('.heti');
+    heti.autoSpacing();
+  </script>
+  <script src="{{ "js/main.js" | relURL }}"></script>
+</body>
+</html>

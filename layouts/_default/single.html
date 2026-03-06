@@ -1,0 +1,49 @@
+{{ define "main" }}
+<article class="letter heti heti--serif" id="top">
+  <header class="letter-header">
+    <h1 class="letter-title">{{ .Title }}</h1>
+  </header>
+
+  {{ with .Params.salutation }}
+  <p class="salutation">{{ . }}</p>
+  {{ end }}
+
+  <div class="letter-body">
+    {{ .Content }}
+  </div>
+
+  <footer class="letter-footer">
+    <div class="valediction">
+      {{- with .Site.Params.valediction }}{{ . }}{{ else }}此致{{ end }}
+    </div>
+    <div class="signature">
+      {{- with .Site.Params.signatureImage }}
+        <img src="{{ . }}" alt="{{ $.Site.Params.author }}" class="signature-image">
+      {{- else }}
+        <span class="signature-text">{{ $.Site.Params.author }}</span>
+      {{- end }}
+    </div>
+    <time class="letter-date letter-date--footer" datetime="{{ .Date.Format "2006-01-02" }}">
+      {{ .Date.Format "2006年1月2日" }}
+    </time>
+    {{- with .Params.postscript }}
+    <p class="postscript"><abbr title="Post Scriptum">P.S.</abbr> {{ . }}</p>
+    {{- end }}
+  </footer>
+
+  <nav class="letter-nav" aria-label="信件导航">
+    {{ with .Next }}
+    <a href="{{ .Permalink }}" class="letter-nav__link letter-nav__link--next">
+      <span class="letter-nav__label">下一封</span>
+      <span class="letter-nav__title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+    {{ with .Prev }}
+    <a href="{{ .Permalink }}" class="letter-nav__link letter-nav__link--prev">
+      <span class="letter-nav__label">上一封</span>
+      <span class="letter-nav__title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+  </nav>
+</article>
+{{ end }}

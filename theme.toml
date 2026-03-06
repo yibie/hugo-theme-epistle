@@ -1,0 +1,13 @@
+name = "Epistle"
+license = "GPL-3.0-or-later"
+licenselink = "https://www.gnu.org/licenses/gpl-3.0.html"
+description = "A Hugo theme styled as private handwritten letters."
+homepage = "https://github.com/yourusername/hugo-theme-epistle"
+min_version = "0.120.0"
+
+[author]
+  name = ""
+  homepage = ""
+
+[features]
+  min_version = "0.120.0"

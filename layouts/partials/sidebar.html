@@ -1,0 +1,27 @@
+<nav class="archive" id="sidebar">
+  <h2 class="archive-title">往来书信</h2>
+  {{ range .Site.RegularPages.GroupByDate "2006" }}
+  <div class="year-group">
+    <button class="year-toggle" aria-expanded="{{ if eq .Key (now.Format "2006") }}true{{ else }}false{{ end }}">
+      {{ .Key }}
+    </button>
+    <div class="month-list"{{ if ne .Key (now.Format "2006") }} hidden{{ end }}>
+      {{ range .Pages.GroupByDate "January 2006" }}
+      <div class="month-group">
+        <span class="month-label">{{ .Key | printf "%.3s" }}</span>
+        <ul>
+          {{ range .Pages }}
+          <li>
+            <a href="{{ .Permalink }}"{{ if eq .Permalink $.Permalink }} aria-current="page"{{ end }}>
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-02" }}</time>
+              {{ .Title }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</nav>
