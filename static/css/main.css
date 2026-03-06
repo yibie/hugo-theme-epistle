@@ -14,7 +14,7 @@
   --shadow-paper:  0 2px 20px rgba(0, 0, 0, 0.08);
 
   --font-body:     "Inter", -apple-system, "Helvetica Neue", system-ui,
-                   "Source Han Serif SC", "Noto Serif SC", "STSong", "SimSun", serif;
+                   "Source Han Serif SC", "Noto Serif SC", "Songti SC", "Songti TC", "STSong", "SimSun", serif;
   --font-signature: "Caveat", "Dancing Script", cursive;
 
   --width-content: 44rem;
@@ -134,7 +134,7 @@ body {
   padding: 0.6rem 0.75rem;
 
   /* 宋体字体 */
-  font-family: "Songti SC", "STSong", "SimSun", "宋体", serif;
+  font-family: "Songti SC", "Songti TC", "STSong", "SimSun", "宋体", serif;
   
   /* 文字横排 */
   font-size: 0.875rem;
