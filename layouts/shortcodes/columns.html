@@ -1,0 +1,8 @@
+{{/*
+  多栏排版块
+  用法：{{< columns n="2" >}} 内容 {{< /columns >}}
+  n 可选：1 2 3 4，或宽度值：16em 20em 24em 28em 32em 36em 40em 44em 48em
+*/}}
+<div class="heti heti--columns-{{ .Get "n" | default "2" }}">
+  {{ .Inner | markdownify }}
+</div>

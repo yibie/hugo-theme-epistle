@@ -1,4 +1,11 @@
-{{/* 古文排版短代码 - 使用赫蹏 heti--ancient 样式 */}}
-<div class="heti--ancient">
-{{ .Inner }}
+{{/*
+  古文排版块
+  用法：{{< ancient >}} 古文内容 {{< /ancient >}}
+  可选参数：title="标题" author="作者"
+*/}}
+<div class="heti heti--ancient">
+  {{- with .Get "title" }}
+  <h2>{{ . }}{{ with $.Get "author" }}<span class="heti-meta heti-small">{{ . }}</span>{{ end }}</h2>
+  {{- end }}
+  {{ .Inner | markdownify }}
 </div>

@@ -1,0 +1,11 @@
+{{/*
+  诗词排版块
+  用法：{{< verse >}} 诗句内容 {{< /verse >}}
+  可选参数：title="标题" author="作者" dynasty="朝代"
+*/}}
+<div class="heti heti--poetry">
+  {{- with .Get "title" }}
+  <h2>{{ . }}{{ with $.Get "dynasty" }}<span class="heti-meta heti-small">[{{ . }}]</span>{{ end }}{{ with $.Get "author" }}<span class="heti-meta heti-small">{{ . }}</span>{{ end }}</h2>
+  {{- end }}
+  {{ .Inner | markdownify }}
+</div>

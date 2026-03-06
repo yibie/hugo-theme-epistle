@@ -1,12 +1,24 @@
-baseURL = 'http://localhost:1313'
-languageCode = 'zh-CN'
-title = '尺素'
-theme = 'epistle'
-
-disableKinds = ["taxonomy", "term"]
+baseURL = 'http://localhost:1313/'
+languageCode = 'zh-cn'
+title = 'Epistle'
+theme = 'hugo-theme-epistle'
+themesDir = '../..'
 summaryLength = 0
+disableKinds = ['taxonomy', 'term']
+
+# 允许 Markdown 中写原生 HTML（heti 行内标签需要）
+[markup.goldmark.renderer]
+  unsafe = true
+
+# 允许 Markdown 块级元素附加 CSS 类
+[markup.goldmark.parser.attribute]
+  block = true
+  title = true
 
 [params]
-  author = "匿名"
-  description = "个人书信集"
-  valediction = "此致"
+  author = '署名者'
+  description = '一个书信风格的个人博客'
+  mainSections = ['posts']
+  letterStyle = 'default'
+  valediction = '此致'
+  showSignature = true

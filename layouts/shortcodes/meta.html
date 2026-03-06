@@ -1,0 +1,4 @@
+{{/* 元信息：来源、作者、注释等辅助文字
+     用法：{{< meta >}}[唐]李白{{< /meta >}}
+     可选 size：small（默认）| x-small */}}
+<span class="heti-meta heti-{{ .Get "size" | default "small" }}">{{ .Inner }}</span>

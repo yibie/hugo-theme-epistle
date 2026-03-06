@@ -1,0 +1,32 @@
+{{/*
+  计算 Heti 类名组合
+  输入：dict "heti_font" .Params.heti_font "heti_mode" .Params.heti_mode
+
+  字体预设（heti_font）：
+    serif       → heti--serif（默认，宋体）
+    sans        → heti--hei（黑体）
+    traditional → heti--kai（楷体）
+
+  排版模式（heti_mode）：
+    ancient     → heti--ancient（古文）
+    poetry      → heti--poetry（诗词）
+    annotation  → heti--annotation（行间注）
+    vertical    → heti--vertical（竖排）
+    columns-2   → heti--columns-2（双栏，1/2/3/4 或 16em~48em）
+*/}}
+{{- $font := "heti--serif" -}}
+{{- with .heti_font -}}
+  {{- if eq . "sans" -}}{{- $font = "heti--hei" -}}{{- end -}}
+  {{- if eq . "traditional" -}}{{- $font = "heti--kai" -}}{{- end -}}
+{{- end -}}
+
+{{- $mode := "" -}}
+{{- with .heti_mode -}}
+  {{- if eq . "ancient" -}}{{- $mode = " heti--ancient" -}}{{- end -}}
+  {{- if eq . "poetry" -}}{{- $mode = " heti--poetry" -}}{{- end -}}
+  {{- if eq . "annotation" -}}{{- $mode = " heti--annotation" -}}{{- end -}}
+  {{- if eq . "vertical" -}}{{- $mode = " heti--vertical" -}}{{- end -}}
+  {{- if hasPrefix . "columns" -}}{{- $mode = printf " heti--%s" . -}}{{- end -}}
+{{- end -}}
+
+{{- return printf "heti %s%s" $font $mode -}}

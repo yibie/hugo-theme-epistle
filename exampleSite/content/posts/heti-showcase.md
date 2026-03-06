@@ -1,90 +1,122 @@
 ---
-title: "赫蹏排版示范"
-date: 2026-03-05T14:00:00+08:00
+title: "Heti 排版功能展示"
+date: 2026-02-01T10:00:00+08:00
 draft: false
 letter_style: "default"
-salutation: "亲爱的排版爱好者："
-postscript: "以上展示了赫蹏的部分排版能力，更多用法请参考文档。"
-heti_class: "heti--serif"
+salutation: "亲爱的读者，"
+postscript: "以上便是 Heti 在行文中的主要用法，希望对你有所帮助。"
 ---
 
-这封信展示赫蹏（Heti）CSS 的中文排版增强能力。
+这篇文章展示在普通书信行文中如何调用 Heti 的排版能力。Heti 的大部分增强是**自动生效**的，无需任何标记——中西文混排间距、标点挤压、网格对齐，都由 JS 和 CSS 在后台处理。
 
-## 着重号
+需要主动标记的，只有下面几类场景。
 
-在正文中，我们可以使用<mark>标记</mark>来高亮重要内容，或者使用<span class="heti-em">着重号</span>（下加点）来表示特别强调。
-
-## 专名标注
-
-比如<u title="中华人民共和国首都">北京</u>的<u>故宫</u>，使用专名号表示特定名称。
-
-## 引号
-
-赫蹏会自动将半角引号转换为直角引号：「今天天气真好！」
-
-## 中西文混排
-
-中英文混排时，不需要手动敲空格：Hugo是最流行的静态网站生成器之一，它使用Go语言编写，速度极快。Hello World程序是每个人的编程入门第一课。
+<!--more-->
 
 ---
 
-## 诗词排版
+## 一、自动生效的能力（无需任何操作）
 
-使用 `heti--poetry` 类实现诗词居中排版：
+写作时正常书写即可，以下效果自动触发：
 
-<div class="heti--poetry">
-
-<h3>赠汪伦<span class="heti-meta heti-small">[唐]李白</span></h3>
-
-<p class="heti-x-large">
-李白乘舟将欲行<span class="heti-hang">，</span><br>
-忽闻岸上踏歌声<span class="heti-hang">。</span><br>
-桃花潭水深千尺<span class="heti-hang">，</span><br>
-不及汪伦送我情<span class="heti-hang">。</span>
-</p>
-
-</div>
-
-**诗词排版说明：**
-- 使用 `heti-x-large` 加大字号
-- 使用 `heti-hang` 实现标点悬挂（逗号、句号悬于行末外侧）
-- 使用 `heti-meta` + `heti-small` 标注作者信息
-- 使用 `heti--poetry` 类使内容居中
+- **中英混排间距**：文字中夹杂English单词时，Heti 自动在中英之间插入¼字宽间距
+- **标点挤压**：连续标点「，」「。」「、」自动压缩为正常视觉间距
+- **网格对齐**：所有文字贴合字体基线网格排列
+- **全角引号**：中文语境下自动使用「直角引号」
 
 ---
 
-## 行间注（注音）
+## 二、行内元信息（来源、注释）
 
-在 `heti--annotation` 容器中，使用 `<ruby>` 标签实现行间注：
+引用他人文字时，用 `meta` shortcode 标注出处：
 
-<div class="heti--annotation">
+> 花自飘零水自流，一种相思，两处闲愁。{{< meta >}}[宋]李清照《一剪梅》{{< /meta >}}
 
-<p>大学之道，在明明德，在<ruby>亲民<rt>xīn mín</rt></ruby>，在止于至善。</p>
+也可以直接写原生 HTML：
 
-<p>知<ruby>止<rt>zhǐ</rt></ruby>而后有定，定而后能静，静而后能安。</p>
-
-</div>
+这是一段引用。<span class="heti-meta heti-small">——出自某处</span>
 
 ---
 
-## 古文版式
+## 三、文字大小调节
 
-使用 `heti--ancient` 类实现古籍排版效果，首行缩进两格，更符合传统阅读习惯：
+行文中偶尔需要强调某个词，可用 `size` shortcode：
 
-<div class="heti--ancient">
+这句话里有{{< size "large" >}}需要强调{{< /size >}}的部分，也有{{< size "small" >}}补充说明的小字{{< /size >}}。
 
-<p>先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。然侍卫之臣不懈于内，忠志之士忘身于外者，盖追先帝之殊遇，欲报之于陛下也。</p>
-
-<p>诚宜开张圣听，以光先帝遗德，恢弘志士之气，不宜妄自菲薄，引喻失义，以塞忠谏之路也。</p>
-
-</div>
+字号可选值：`x-large`、`large`（默认）、`small`、`x-small`。
 
 ---
 
-## 技术术语
+## 四、嵌入诗词块
 
-HTML中的<dfn>ruby</dfn>元素可以用来标注注音或注释。<abbr title="Cascading Style Sheets">CSS</abbr>则负责样式呈现。
+信中引用诗词，用 `verse` shortcode 创建居中的诗词版式：
 
-行内代码如<code>hugo server -D</code>也会自动美化。
+{{< verse title="九月九日忆山东兄弟" author="王维" dynasty="唐" >}}
+独在异乡为异客{{< hang >}}，{{< /hang >}}
+每逢佳节倍思亲{{< hang >}}。{{< /hang >}}
+遥知兄弟登高处{{< hang >}}，{{< /hang >}}
+遍插茱萸少一人{{< hang >}}。{{< /hang >}}
+{{< /verse >}}
 
-文本更新示例：因为谁也不认识，所以最后我们决定念<del>dí</del><ins>tí</ins>。
+`heti-hang` 使末尾标点悬挂于行外，避免右侧视觉不齐整。
+
+---
+
+## 五、嵌入古文块
+
+引用文言文段落，用 `ancient` shortcode：
+
+{{< ancient title="岳阳楼记（节选）" author="范仲淹" >}}
+庆历四年春，滕子京谪守巴陵郡。越明年，政通人和，百废具兴，乃重修岳阳楼，增其旧制，刻唐贤今人诗赋于其上，属予作文以记之。
+{{< /ancient >}}
+
+---
+
+## 六、嵌入注音块
+
+需要为生僻字或专有名词注音时，用 `ruby` shortcode（行内使用）：
+
+「{{< ruby text="赫蹏" ruby="hètí" >}}」是这个主题 CSS 库的名字，取自汉代典籍。
+
+也可以在 `annotation` 块里集中处理含注音的段落：
+
+{{< annotation >}}
+<p>春眠不觉晓，<ruby>处<rp>（</rp><rt>chù</rt><rp>）</rp></ruby>处闻啼鸟。</p>
+{{< /annotation >}}
+
+---
+
+## 七、多栏排版
+
+适合较长的列举或并列内容：
+
+{{< columns n="2" >}}
+**左栏内容**
+
+这里是第一栏的文字，适合两个对比主题并排展示。
+
+**右栏内容**
+
+这里是第二栏的文字，读者可以左右对照阅读。
+{{< /columns >}}
+
+---
+
+## 八、跳过 Heti 处理
+
+某些代码、外文段落不需要 Heti 干预，用 `heti-skip` 类：
+
+<p class="heti-skip">This paragraph contains English-only content that should not be processed by Heti's CJK spacing rules.</p>
+
+---
+
+## 九、Markdown 块级属性（直接附加类名）
+
+开启 `markup.goldmark.parser.attribute.block = true` 后，可直接在 Markdown 块后附加类：
+
+这是一段需要放大显示的重要话语。
+{.heti-x-large}
+
+> 引用块可以这样加元信息样式。
+{.heti-meta}

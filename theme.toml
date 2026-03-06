@@ -11,3 +11,10 @@ min_version = "0.120.0"
 
 [features]
   min_version = "0.120.0"
+
+# Recommended site config (hugo.toml)
+# [markup.goldmark.renderer]
+#   unsafe = true          # allow raw HTML in Markdown
+# [markup.goldmark.parser.attribute]
+#   block = true           # allow CSS classes on Markdown blocks
+#   title = true

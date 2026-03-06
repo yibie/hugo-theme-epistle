@@ -1,0 +1,4 @@
+{{/* 文字大小调节
+     用法：{{< size "x-large" >}}重点文字{{< /size >}}
+     可选值：x-large | large | small | x-small */}}
+<span class="heti-{{ .Get 0 | default "large" }}">{{ .Inner }}</span>

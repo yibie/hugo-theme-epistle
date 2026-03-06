@@ -1,0 +1,5 @@
+{{/*
+  行间注（ruby 注音/注释）
+  用法：{{< ruby text="汉字" ruby="hàn zì" >}}
+*/}}
+<ruby>{{ .Get "text" }}<rp>（</rp><rt>{{ .Get "ruby" }}</rt><rp>）</rp></ruby>

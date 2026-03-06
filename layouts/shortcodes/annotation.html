@@ -1,0 +1,7 @@
+{{/*
+  行间注排版块（整段含 ruby 注释）
+  用法：{{< annotation >}} 含 <ruby> 标签的内容 {{< /annotation >}}
+*/}}
+<div class="heti heti--annotation">
+  {{ .Inner | markdownify }}
+</div>

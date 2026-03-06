@@ -469,3 +469,78 @@ body {
     width: min(280px, 80vw);
   }
 }
+
+/* ============================================================
+   Heti 深度集成
+   ============================================================ */
+
+/* ── night 模式桥接（Heti 用 prefers-color-scheme: dark，
+       我们用 data-style="night"，需手动补齐） ── */
+[data-style="night"] .heti blockquote {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+[data-style="night"] .heti hr {
+  background-color: #404040;
+}
+[data-style="night"] .heti pre,
+[data-style="night"] .heti code:not(pre > code) {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: inherit;
+}
+[data-style="night"] .heti mark {
+  background-color: rgba(255, 220, 0, 0.2);
+  color: inherit;
+}
+[data-style="night"] .heti table thead {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+[data-style="night"] .heti a {
+  color: var(--color-accent);
+}
+
+/* ── 让所有主题的 Heti 颜色继承我们的 CSS 变量 ── */
+.heti {
+  color: var(--color-ink);
+}
+.heti .heti-meta {
+  color: var(--color-meta);
+}
+.heti a {
+  color: var(--color-accent);
+}
+
+/* ── 诗词版式：居中对齐 ── */
+.heti--poetry {
+  text-align: center;
+}
+.heti--poetry h2 {
+  margin-bottom: 1.5rem;
+}
+
+/* ── 古文版式：缩进调整 ── */
+.heti--ancient p {
+  text-indent: 2em;
+}
+
+/* ── 竖排：容器高度限制 ── */
+.heti--vertical {
+  max-height: 42em;
+  overflow-x: auto;
+}
+
+/* ── 多栏：栏间距 ── */
+[class*="heti--columns-"] {
+  column-gap: 2em;
+  column-rule: 1px solid var(--color-fold);
+}
+
+/* ── shortcode 块与信件正文的间距 ── */
+.letter-body .heti--poetry,
+.letter-body .heti--ancient,
+.letter-body .heti--vertical,
+[class*="letter-body .heti--columns"] {
+  margin-block: 2rem;
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--color-fold);
+  border-radius: 2px;
+}
