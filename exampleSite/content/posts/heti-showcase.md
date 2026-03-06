@@ -20,7 +20,7 @@ heti_class: "heti--serif"
 
 ## 引号
 
-赫蹏会自动将半角引号转换为直角引号：他说：「今天天气真好！」
+赫蹏会自动将半角引号转换为直角引号：「今天天气真好！」
 
 ## 中西文混排
 
@@ -30,9 +30,11 @@ heti_class: "heti--serif"
 
 ## 诗词排版
 
-{{< poem >}}
+使用 `heti--poetry` 类实现诗词居中排版：
 
-### 赠汪伦<span class="heti-meta heti-small">[唐]李白</span>
+<div class="heti--poetry">
+
+<h3>赠汪伦<span class="heti-meta heti-small">[唐]李白</span></h3>
 
 <p class="heti-x-large">
 李白乘舟将欲行<span class="heti-hang">，</span><br>
@@ -41,22 +43,39 @@ heti_class: "heti--serif"
 不及汪伦送我情<span class="heti-hang">。</span>
 </p>
 
-{{< /poem >}}
+</div>
 
 **诗词排版说明：**
 - 使用 `heti-x-large` 加大字号
 - 使用 `heti-hang` 实现标点悬挂（逗号、句号悬于行末外侧）
 - 使用 `heti-meta` + `heti-small` 标注作者信息
+- 使用 `heti--poetry` 类使内容居中
 
 ---
 
 ## 行间注（注音）
 
-以下文字启用了行间注样式：
+在 `heti--annotation` 容器中，使用 `<ruby>` 标签实现行间注：
 
 <div class="heti--annotation">
 
-<p>大学之道，在明明德，在<ruby>亲民<rt>xin min</rt></ruby>，在止于至善。</p>
+<p>大学之道，在明明德，在<ruby>亲民<rt>xīn mín</rt></ruby>，在止于至善。</p>
+
+<p>知<ruby>止<rt>zhǐ</rt></ruby>而后有定，定而后能静，静而后能安。</p>
+
+</div>
+
+---
+
+## 古文版式
+
+使用 `heti--ancient` 类实现古籍排版效果，首行缩进两格，更符合传统阅读习惯：
+
+<div class="heti--ancient">
+
+<p>先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。然侍卫之臣不懈于内，忠志之士忘身于外者，盖追先帝之殊遇，欲报之于陛下也。</p>
+
+<p>诚宜开张圣听，以光先帝遗德，恢弘志士之气，不宜妄自菲薄，引喻失义，以塞忠谏之路也。</p>
 
 </div>
 
@@ -66,4 +85,6 @@ heti_class: "heti--serif"
 
 HTML中的<dfn>ruby</dfn>元素可以用来标注注音或注释。<abbr title="Cascading Style Sheets">CSS</abbr>则负责样式呈现。
 
-行内代码如`hugo server -D`也会自动美化。
+行内代码如<code>hugo server -D</code>也会自动美化。
+
+文本更新示例：因为谁也不认识，所以最后我们决定念<del>dí</del><ins>tí</ins>。
