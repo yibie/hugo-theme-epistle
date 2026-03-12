@@ -35,6 +35,7 @@ Epistle（尺素）将博客构想为**书桌上的一叠私人信札**：
 | **楷体标题** | 文章标题使用楷体，营造手写感 |
 | **信笺索引** | 右侧「信匣」按钮，抽屉式展开归档 |
 | **轻量无依赖** | 纯原生 CSS/JS，无框架负担 |
+| **社交预览** | 自动生成 Open Graph / Twitter Card 元标签，Telegram、微信、X 分享均显示标题、描述与封面图 |
 
 ---
 
@@ -84,6 +85,7 @@ summaryLength = 0
   valediction = "此致"                  # 祝颂语（默认：此致）
   showSignature = true                  # 显示署名
   signatureImage = "/images/sig.png"    # 可选：手写签名图片
+  ogImage = "https://example.com/images/og-default.jpg"  # 可选：社交分享默认封面图
 ```
 
 ### 文章 Front Matter
@@ -96,8 +98,37 @@ draft: false
 letter_style: "warm"              # 可选：default | warm | sky | night | spring
 salutation: "亲爱的朋友，"         # 可选：称谓
 postscript: "又及：补充说明"       # 可选：P.S. 附言
+image: "https://example.com/images/cover.jpg"  # 可选：本文社交预览封面图
 ---
 ```
+
+---
+
+## 社交预览（Open Graph / Telegram）
+
+主题自动为每个页面生成完整的 Open Graph 与 Twitter Card 元标签，在 Telegram、微信、X（Twitter）等平台分享链接时显示标题、描述与封面图。
+
+### 封面图设置
+
+**全站默认封面图**（无单篇封面时使用）：
+
+```toml
+[params]
+  ogImage = "https://example.com/images/og-default.jpg"
+```
+
+**单篇文章封面图**（在 front matter 中设置）：
+
+```yaml
+image: "https://example.com/images/cover.jpg"
+```
+
+图片建议尺寸 **1200×630px**，必须使用 HTTPS 绝对路径。
+
+### 调试工具
+
+- Telegram：向 [@WebpageBot](https://t.me/WebpageBot) 发送链接，可强制刷新预览缓存
+- 通用：[Open Graph 调试器](https://www.opengraph.xyz/)
 
 ---
 
