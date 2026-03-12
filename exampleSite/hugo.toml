@@ -22,3 +22,5 @@ disableKinds = ['taxonomy', 'term']
   letterStyle = 'default'
   valediction = '此致'
   showSignature = true
+  # 社交分享默认封面图（Telegram / Twitter 预览用）
+  # ogImage = 'https://yourdomain.com/images/og-default.jpg'
