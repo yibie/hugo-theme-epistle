@@ -3,7 +3,23 @@
 <head>
   {{- partial "head.html" . -}}
 </head>
-<body data-style="{{ .Params.letter_style | default (.Site.Params.letterStyle | default "default") }}">
+{{- $style := .Params.letter_style | default (.Site.Params.letterStyle | default "default") -}}
+{{- if .IsHome -}}
+  {{- with first 1 (where .Site.RegularPages "Section" "posts") -}}
+    {{- $style = (index . 0).Params.letter_style | default $style -}}
+  {{- end -}}
+{{- end -}}
+{{- $dappledEnabled := true -}}
+{{- if isset .Site.Params "dappledlight" -}}
+  {{- $dappledEnabled = .Site.Params.dappledLight -}}
+{{- end -}}
+<body data-style="{{ $style }}" data-dappled="{{ if $dappledEnabled }}on{{ else }}off{{ end }}">
+  <div class="dappled-layer" aria-hidden="true">
+    <div class="dappled-layer__wash"></div>
+    <div class="dappled-layer__shadows" id="dappled-shadows"></div>
+    <div class="dappled-layer__bokeh" id="dappled-bokeh"></div>
+    <div class="dappled-layer__grain"></div>
+  </div>
   <div class="desk">
     {{- partial "header.html" . -}}
     <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
@@ -22,6 +38,7 @@
     const heti = new Heti('.heti');
     heti.autoSpacing();
   </script>
-  <script src="{{ "js/main.js" | relURL }}"></script>
+  {{- $assetVersion := now.Unix -}}
+  <script src="{{ "js/main.js" | relURL }}?v={{ $assetVersion }}"></script>
 </body>
 </html>

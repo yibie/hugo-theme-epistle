@@ -32,6 +32,7 @@ Epistle（尺素）将博客构想为**书桌上的一叠私人信札**：
 | **书信隐喻** | 文章 = 信件，日期 = 落款，首页 = 桌上信笺 |
 | **完整 Heti 支持** | 深度集成 [赫蹏 (Heti)](https://sivan.github.io/heti/)：自动中西文间距、标点挤压、行间注、诗词/古文/多栏排版等全部版式能力均通过 shortcode 开箱即用 |
 | **五款信纸** | 白纸蓝墨 / 暖笺 / 晴空 / 夜信 / 春笺 |
+| **斑驳树影** | 以纯 JS + CSS 生成遮挡投影、分段模糊与纸面颗粒，模拟午后树荫/窗影落在信纸上的空间感 |
 | **楷体标题** | 文章标题使用楷体，营造手写感 |
 | **信笺索引** | 右侧「信匣」按钮，抽屉式展开归档 |
 | **轻量无依赖** | 纯原生 CSS/JS，无框架负担 |
@@ -86,6 +87,7 @@ summaryLength = 0
   showSignature = true                  # 显示署名
   signatureImage = "/images/sig.png"    # 可选：手写签名图片
   ogImage = "https://example.com/images/og-default.jpg"  # 可选：社交分享默认封面图
+  dappledLight = true                   # 可选：是否启用斑驳树影效果（默认 true）
 ```
 
 ### 文章 Front Matter
@@ -143,6 +145,49 @@ image: "https://example.com/images/cover.jpg"
 | `sky` | 晴空 | 航空信纸蓝，远方思念 |
 | `night` | 夜信 | 深夜告白，烛光氛围 |
 | `spring` | 春笺 | 淡绿，自然，散文随笔 |
+
+五种信纸除了底色不同，也会自动匹配不同的统一光影色温：
+
+- `default`：白纸蓝墨，午后白墙反光更清爽
+- `warm`：更偏金黄，像傍晚室内木窗边的暖光
+- `sky`：更冷、更轻，像高空散射后的柔光
+- `night`：更低对比，像月下或路灯旁的微弱投影
+- `spring`：更淡绿，更像树梢新叶滤过的天光
+
+## Dappled Light 斑驳树影
+
+主题默认启用斑驳树影效果。当前实现采用 **theme-switch 风格的单一 fixed overlay 架构**，并在效果层面参考 CSS-Tricks 的 dappled light 方法：
+
+- 页面只有一个统一的 `dappled-layer`
+- 少量大 shape 同时承担光与影，而不是背景和纸面各做一套特效
+- 信纸通过半透明材质、`backdrop-filter` 和 `isolation` 去承接同一层投影
+
+设计目标不是做“物理上绝对真实”的树叶投影，而是让 Epistle 的信纸更像一张放在窗边书桌上的纸：背景和纸面属于同一束光，阅读时不会觉得是两个互不相干的效果。
+
+### 关闭斑驳树影
+
+如果你更喜欢完全干净的纸面，可以在站点配置中关闭：
+
+```toml
+[params]
+  dappledLight = false
+```
+
+### 分层结构
+
+该效果由几层组成：
+
+1. **Dappled Layer**：页面级统一光影层，固定在视口中，负责所有主要斑驳形状与环境光
+2. **Paper Surface**：信纸本身不再拥有独立的光影子系统，而是用半透明材质承接统一投影
+3. **Grain Layer**：很轻的颗粒感，避免画面太“数字化”
+4. **Content Layer**：正文通过 `isolation` 与层级隔离，避免被混合模式污染
+
+### 降级策略
+
+- 在 `prefers-reduced-motion` 环境下，统一光影层的漂移和颗粒动画会停止或减弱
+- 在移动端会自动减小 shape 体积与颗粒强度
+- 如果浏览器不支持 `backdrop-filter`，纸张会退化为更高不透明度的普通材质
+- 如果关闭 `dappledLight`，则完全回退为普通信纸样式
 
 ---
 

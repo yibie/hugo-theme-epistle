@@ -7,6 +7,7 @@
 :root {
   --color-desk:    #E8E4DF;
   --color-paper:   #FFFFFF;
+  --color-paper-rgb: 255, 255, 255;
   --color-ink:     #1C2333;
   --color-meta:    #718096;
   --color-accent:  #2C5282;
@@ -22,44 +23,166 @@
   --size-body:     18px;
   --line-height:   1.75;
   --spacing-para:  1.5rem;
+
+  --dappled-enabled: 1;
+  --paper-alpha: 0.9;
+  --sun-scene-rotate: -18deg;
+  --sun-blur-angle: 78deg;
+  --sun-caster-blur: 7px;
+  --sun-shadow-blend: multiply;
+  --sun-ambient-primary: rgba(255, 246, 229, 0.88);
+  --sun-ambient-secondary: rgba(255, 255, 255, 0.34);
+  --sun-ambient-tertiary: rgba(255, 247, 235, 0.12);
+  --sun-shadow-strong: rgba(82, 98, 117, 0.46);
+  --sun-shadow-soft: rgba(126, 140, 156, 0.24);
+  --sun-leaf-color: rgba(90, 104, 120, 0.34);
+  --sun-paper-glow: rgba(255, 250, 241, 0.74);
+  --sun-paper-glow-opacity: 0.72;
+  --sun-bar-right: 24vw;
+  --sun-bar-opacity: 0.34;
+  --sun-grain-light: rgba(255, 255, 255, 0.08);
+  --sun-grain-dark: rgba(41, 49, 58, 0.055);
+  --sun-grain-opacity: 0.2;
+  --paper-grain-opacity: 0.16;
 }
 
 /* ── 主题覆盖 ── */
 [data-style="warm"] {
   --color-desk:    #D6C9B6;
   --color-paper:   #FEF9F0;
+  --color-paper-rgb: 254, 249, 240;
   --color-ink:     #2C1F0E;
   --color-meta:    #8B7355;
   --color-accent:  #7B4F2E;
   --color-fold:    rgba(44, 31, 14, 0.08);
+
+  --paper-alpha: 0.88;
+  --sun-scene-rotate: -16deg;
+  --sun-blur-angle: 74deg;
+  --sun-caster-blur: 8px;
+  --sun-ambient-primary: rgba(255, 223, 179, 0.9);
+  --sun-ambient-secondary: rgba(255, 243, 221, 0.42);
+  --sun-ambient-tertiary: rgba(255, 214, 160, 0.18);
+  --sun-shadow-strong: rgba(123, 79, 36, 0.48);
+  --sun-shadow-soft: rgba(169, 123, 76, 0.24);
+  --sun-leaf-color: rgba(124, 83, 42, 0.36);
+  --sun-paper-glow: rgba(255, 238, 206, 0.78);
+  --sun-paper-glow-opacity: 0.8;
+  --sun-bar-right: 21vw;
+  --sun-bar-opacity: 0.38;
+  --sun-grain-light: rgba(255, 246, 230, 0.1);
+  --sun-grain-dark: rgba(94, 69, 43, 0.06);
+  --sun-grain-opacity: 0.24;
+  --paper-grain-opacity: 0.18;
 }
 
 [data-style="sky"] {
   --color-desk:    #C9DFF0;
   --color-paper:   #EBF4FB;
+  --color-paper-rgb: 235, 244, 251;
   --color-ink:     #1A3A52;
   --color-meta:    #5A8FA8;
   --color-accent:  #1A6FA8;
   --color-fold:    rgba(26, 58, 82, 0.1);
+
+  --paper-alpha: 0.9;
+  --sun-scene-rotate: -21deg;
+  --sun-blur-angle: 82deg;
+  --sun-caster-blur: 6px;
+  --sun-ambient-primary: rgba(223, 241, 255, 0.82);
+  --sun-ambient-secondary: rgba(255, 255, 255, 0.32);
+  --sun-ambient-tertiary: rgba(191, 226, 255, 0.14);
+  --sun-shadow-strong: rgba(74, 122, 163, 0.34);
+  --sun-shadow-soft: rgba(116, 156, 188, 0.18);
+  --sun-leaf-color: rgba(82, 130, 170, 0.24);
+  --sun-paper-glow: rgba(242, 250, 255, 0.7);
+  --sun-paper-glow-opacity: 0.66;
+  --sun-bar-right: 27vw;
+  --sun-bar-opacity: 0.26;
+  --sun-grain-light: rgba(255, 255, 255, 0.08);
+  --sun-grain-dark: rgba(57, 103, 143, 0.05);
+  --sun-grain-opacity: 0.17;
+  --paper-grain-opacity: 0.14;
 }
 
 [data-style="night"] {
   --color-desk:    #0D1117;
   --color-paper:   #161B22;
+  --color-paper-rgb: 22, 27, 34;
   --color-ink:     #CDD9E5;
   --color-meta:    #768390;
   --color-accent:  #79C0FF;
   --color-fold:    rgba(205, 217, 229, 0.1);
   --shadow-paper:  0 2px 20px rgba(0, 0, 0, 0.4);
+
+  --paper-alpha: 0.86;
+  --sun-scene-rotate: -12deg;
+  --sun-blur-angle: 86deg;
+  --sun-caster-blur: 10px;
+  --sun-shadow-blend: soft-light;
+  --sun-ambient-primary: rgba(68, 96, 141, 0.18);
+  --sun-ambient-secondary: rgba(126, 174, 255, 0.08);
+  --sun-ambient-tertiary: rgba(7, 12, 18, 0.16);
+  --sun-shadow-strong: rgba(3, 8, 16, 0.72);
+  --sun-shadow-soft: rgba(24, 36, 51, 0.36);
+  --sun-leaf-color: rgba(8, 16, 27, 0.46);
+  --sun-paper-glow: rgba(105, 146, 206, 0.18);
+  --sun-paper-glow-opacity: 0.48;
+  --sun-bar-right: 31vw;
+  --sun-bar-opacity: 0.22;
+  --sun-grain-light: rgba(255, 255, 255, 0.05);
+  --sun-grain-dark: rgba(0, 0, 0, 0.14);
+  --sun-grain-opacity: 0.24;
+  --paper-grain-opacity: 0.18;
 }
 
 [data-style="spring"] {
   --color-desk:    #DDE8DC;
   --color-paper:   #F4FAF4;
+  --color-paper-rgb: 244, 250, 244;
   --color-ink:     #1F3324;
   --color-meta:    #5A7A64;
   --color-accent:  #2D6A4F;
   --color-fold:    rgba(31, 51, 36, 0.08);
+
+  --paper-alpha: 0.9;
+  --sun-scene-rotate: -19deg;
+  --sun-blur-angle: 76deg;
+  --sun-caster-blur: 6px;
+  --sun-ambient-primary: rgba(229, 244, 214, 0.88);
+  --sun-ambient-secondary: rgba(244, 255, 239, 0.34);
+  --sun-ambient-tertiary: rgba(198, 229, 181, 0.14);
+  --sun-shadow-strong: rgba(78, 120, 88, 0.32);
+  --sun-shadow-soft: rgba(112, 155, 118, 0.16);
+  --sun-leaf-color: rgba(86, 134, 92, 0.26);
+  --sun-paper-glow: rgba(245, 255, 240, 0.74);
+  --sun-paper-glow-opacity: 0.74;
+  --sun-bar-right: 24vw;
+  --sun-bar-opacity: 0.24;
+  --sun-grain-light: rgba(255, 255, 255, 0.08);
+  --sun-grain-dark: rgba(58, 101, 67, 0.05);
+  --sun-grain-opacity: 0.18;
+  --paper-grain-opacity: 0.15;
+}
+
+[data-shadow-style="window"] {
+  --sun-scene-rotate: -9deg;
+  --sun-blur-angle: 66deg;
+  --sun-caster-blur: 6px;
+  --sun-bar-opacity: 0;
+  --sun-paper-glow-opacity: 0.56;
+}
+
+[data-shadow-style="blinds"] {
+  --sun-scene-rotate: -14deg;
+  --sun-blur-angle: 72deg;
+  --sun-caster-blur: 5px;
+  --sun-bar-opacity: 0.1;
+  --sun-paper-glow-opacity: 0.68;
+}
+
+[data-shadow-style="canopy"] {
+  --sun-scene-rotate: -18deg;
 }
 
 /* ── 基础重置 ── */
@@ -73,13 +196,257 @@ body {
   color: var(--color-ink);
   line-height: var(--line-height);
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body[data-dappled="off"] {
+  --dappled-enabled: 0;
+}
+
+.sunlight-debug-chip {
+  position: fixed;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  z-index: 1001;
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(16, 19, 24, 0.78);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+[data-style="night"] .sunlight-debug-chip {
+  color: rgba(225, 235, 245, 0.92);
+  background: rgba(8, 10, 14, 0.82);
 }
 
 /* ── 布局 ── */
 .desk {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.sunlight-scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sunlight-scene[hidden] {
+  display: none;
+}
+
+.sunlight-scene__ambient,
+.sunlight-scene__projection,
+.sunlight-scene__grain {
+  position: absolute;
+  inset: 0;
+}
+
+.sunlight-scene__ambient {
+  inset: -16% -10% 12% -18%;
+  opacity: calc(var(--dappled-enabled) * 0.96);
+  background:
+    radial-gradient(38rem 24rem at 84% 2%, var(--sun-ambient-primary) 0%, transparent 62%),
+    radial-gradient(30rem 20rem at 62% 14%, var(--sun-ambient-secondary) 0%, transparent 60%),
+    radial-gradient(28rem 18rem at 38% 18%, rgba(255, 255, 255, 0.16) 0%, transparent 62%),
+    linear-gradient(180deg, var(--sun-ambient-tertiary) 0%, transparent 78%);
+  filter: blur(34px);
+  transform: rotate(var(--sun-scene-rotate));
+  transform-origin: top right;
+}
+
+.sunlight-scene__projection {
+  inset: -14vh -24vw -10vh -28vw;
+  transform: rotate(var(--sun-scene-rotate));
+  transform-origin: top right;
+  perspective: 120vw;
+}
+
+.sunlight-scene__shutters,
+.sunlight-scene__branches,
+.sunlight-scene__leaves {
+  position: absolute;
+  inset: 0;
+}
+
+.sunlight-shutter {
+  position: absolute;
+  mix-blend-mode: var(--sun-shadow-blend);
+}
+
+.sunlight-shutter--canopy-band {
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+  background: linear-gradient(90deg, var(--sun-shadow-strong) 0 28%, var(--sun-shadow-soft) 56%, transparent 86%);
+  filter: blur(var(--sun-caster-blur));
+  transform: translateX(var(--sunlight-shift)) rotateY(var(--sunlight-tilt)) skewX(var(--sunlight-skew));
+  transform-origin: right center;
+}
+
+.sunlight-shutter--blind {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sun-shadow-strong) 0%, var(--sun-shadow-soft) 58%, transparent 100%);
+  filter: blur(calc(var(--sun-caster-blur) * 1.05));
+  transform: translateX(var(--sunlight-shift)) rotate(var(--sunlight-tilt));
+  transform-origin: right center;
+}
+
+.sunlight-shutter--blind-rail {
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--sun-shadow-strong) 0%, var(--sun-shadow-soft) 68%, transparent 100%);
+  filter: blur(8px);
+}
+
+.sunlight-shutter--window-v,
+.sunlight-shutter--window-h,
+.sunlight-shutter--window-sash {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sun-shadow-strong) 0%, var(--sun-shadow-soft) 68%, transparent 100%);
+  filter: blur(calc(var(--sun-caster-blur) * 1.1));
+}
+
+.sunlight-shutter--window-v {
+  transform: rotate(var(--sunlight-tilt));
+  transform-origin: center top;
+}
+
+.sunlight-shutter--window-h {
+  transform: rotate(-1.5deg);
+  transform-origin: left center;
+}
+
+.sunlight-shutter--window-sash {
+  filter: blur(6px);
+}
+
+.sunlight-branch {
+  position: absolute;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sun-shadow-strong) 0%, var(--sun-shadow-soft) 72%, transparent 100%);
+  filter: blur(2px);
+  transform-origin: left center;
+  mix-blend-mode: var(--sun-shadow-blend);
+}
+
+.sunlight-branch--primary {
+  filter: blur(2.4px);
+}
+
+.sunlight-branch--twig {
+  filter: blur(1.8px);
+}
+
+.sunlight-scene__bar {
+  position: absolute;
+  top: -12vh;
+  right: var(--sun-bar-right);
+  width: 26px;
+  height: 130vh;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--sun-shadow-strong) 0%, var(--sun-shadow-soft) 65%, transparent 100%);
+  filter: blur(8px);
+  opacity: calc(var(--dappled-enabled) * var(--sun-bar-opacity));
+  mix-blend-mode: var(--sun-shadow-blend);
+}
+
+.sunlight-leaf {
+  position: absolute;
+  width: calc(var(--leaf-size) * 0.74);
+  height: var(--leaf-size);
+  opacity: var(--leaf-opacity);
+  filter: blur(var(--leaf-blur));
+  transform: rotate(var(--leaf-rotation)) scale(var(--leaf-scale));
+  transform-origin: center;
+  mix-blend-mode: var(--sun-shadow-blend);
+}
+
+.sunlight-leaf::before,
+.sunlight-leaf::after {
+  content: "";
+  position: absolute;
+  background: var(--sun-leaf-color);
+}
+
+.sunlight-leaf--1::before {
+  inset: 0;
+  clip-path: polygon(50% 0%, 63% 8%, 77% 18%, 73% 31%, 92% 36%, 82% 50%, 100% 60%, 78% 70%, 84% 85%, 62% 79%, 50% 100%, 38% 79%, 16% 85%, 22% 70%, 0% 60%, 18% 50%, 8% 36%, 27% 31%, 23% 18%, 37% 8%);
+}
+
+.sunlight-leaf--2::before {
+  inset: 2% 10% 0 0;
+  clip-path: polygon(50% 0%, 69% 9%, 86% 25%, 77% 40%, 95% 54%, 76% 69%, 80% 86%, 57% 81%, 49% 100%, 37% 80%, 15% 86%, 22% 68%, 0% 55%, 20% 40%, 11% 25%, 31% 10%);
+  transform: rotate(-10deg);
+}
+
+.sunlight-leaf--2::after {
+  inset: 24% -6% 8% 38%;
+  clip-path: polygon(47% 0%, 66% 14%, 84% 34%, 100% 52%, 79% 74%, 55% 100%, 33% 76%, 12% 55%, 24% 32%);
+  transform: rotate(14deg);
+}
+
+.sunlight-leaf--3::before {
+  inset: 3% 18% 0 0;
+  clip-path: polygon(48% 0%, 64% 10%, 82% 28%, 73% 42%, 92% 56%, 70% 73%, 74% 88%, 54% 82%, 47% 100%, 32% 81%, 12% 88%, 18% 71%, 0% 56%, 22% 42%, 13% 27%, 31% 10%);
+  transform: rotate(-14deg);
+}
+
+.sunlight-leaf--3::after {
+  inset: 16% 0 8% 22%;
+  clip-path: polygon(52% 0%, 68% 11%, 86% 30%, 77% 44%, 100% 58%, 78% 76%, 81% 92%, 56% 84%, 48% 100%, 34% 84%, 12% 92%, 21% 75%, 0% 58%, 21% 44%, 13% 29%, 31% 11%);
+  transform: rotate(11deg);
+}
+
+.sunlight-leaf--4::before {
+  inset: 0 12% 4% 12%;
+  clip-path: polygon(50% 0%, 63% 13%, 82% 16%, 76% 32%, 98% 40%, 83% 54%, 95% 72%, 72% 72%, 67% 92%, 50% 82%, 33% 92%, 28% 72%, 5% 72%, 17% 54%, 2% 40%, 24% 32%, 18% 16%, 37% 13%);
+}
+
+.sunlight-leaf--4::after {
+  inset: 36% -10% 18% 36%;
+  clip-path: polygon(46% 0%, 66% 16%, 84% 36%, 100% 54%, 80% 76%, 56% 100%, 34% 78%, 12% 55%, 22% 32%);
+  transform: rotate(18deg);
+}
+
+.sunlight-leaf--canopy {
+  filter: blur(calc(var(--leaf-blur) * 0.82));
+}
+
+.sunlight-leaf--drift {
+  animation: sunlightLeafDrift var(--leaf-duration, 24s) ease-in-out var(--leaf-delay, 0s) infinite alternate;
+}
+
+.sunlight-scene__grain {
+  background-image:
+    radial-gradient(var(--sun-grain-light) 0.55px, transparent 0.8px),
+    radial-gradient(var(--sun-grain-dark) 0.55px, transparent 0.8px);
+  background-position: 0 0, 9px 12px;
+  background-size: 18px 18px, 23px 23px;
+}
+
+.sunlight-scene__grain {
+  opacity: calc(var(--dappled-enabled) * var(--sun-grain-opacity));
+  mix-blend-mode: soft-light;
+  animation: sunlightNoise 1.8s steps(2) infinite;
+}
+
+.layout,
+.site-header,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 .layout {
@@ -93,11 +460,40 @@ body {
 
 /* ── 信纸（主内容） ── */
 .paper {
-  background: var(--color-paper);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--color-paper-rgb), calc(var(--paper-alpha) + 0.05)) 0%,
+    rgba(var(--color-paper-rgb), var(--paper-alpha)) 38%,
+    rgba(var(--color-paper-rgb), calc(var(--paper-alpha) - 0.04)) 100%
+  );
   box-shadow: var(--shadow-paper);
   padding: 3rem 3.5rem 4rem;
   border-right: 1px solid var(--color-fold);
   min-height: calc(100vh - 8rem);
+  backdrop-filter: blur(14px) saturate(118%) brightness(1.02);
+  -webkit-backdrop-filter: blur(14px) saturate(118%) brightness(1.02);
+}
+
+.paper > * {
+  position: relative;
+  z-index: 1;
+}
+
+body[data-dappled="off"] .sunlight-scene {
+  display: none;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .paper {
+    background: linear-gradient(
+      180deg,
+      rgba(var(--color-paper-rgb), 0.92) 0%,
+      rgba(var(--color-paper-rgb), 0.9) 100%
+    );
+  }
 }
 
 /* ── 页眉 ── */
@@ -297,6 +693,24 @@ body {
   line-height: 1.4;
 }
 
+@keyframes sunlightLeafDrift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(var(--leaf-rotation)) scale(var(--leaf-scale));
+  }
+  100% {
+    transform: translate3d(-1rem, 0.75rem, 0) rotate(calc(var(--leaf-rotation) + 9deg)) scale(calc(var(--leaf-scale) * 1.04));
+  }
+}
+
+@keyframes sunlightNoise {
+  0% { transform: translate3d(0, 1rem, 0); }
+  20% { transform: translate3d(-0.75rem, -0.75rem, 0); }
+  40% { transform: translate3d(0.5rem, 1.25rem, 0); }
+  60% { transform: translate3d(-1rem, 0.25rem, 0); }
+  80% { transform: translate3d(0.75rem, -1rem, 0); }
+  100% { transform: translate3d(-0.5rem, 0, 0); }
+}
+
 /* ── 侧边栏（归档） ── */
 .sidebar {
   position: fixed;
@@ -451,6 +865,24 @@ body {
 @media (max-width: 768px) {
   :root { --size-body: 16px; }
 
+  .sunlight-scene__ambient {
+    inset: -12% -18% 32% -20%;
+    opacity: calc(var(--dappled-enabled) * 0.74);
+  }
+
+  .sunlight-scene__projection {
+    inset: -10vh -28vw -12vh -30vw;
+  }
+
+  .sunlight-scene__bar {
+    width: 18px;
+    right: 18vw;
+  }
+
+  .sunlight-scene__grain {
+    opacity: calc(var(--dappled-enabled) * 0.12);
+  }
+
   .layout {
     padding: 0;
   }
@@ -459,6 +891,8 @@ body {
     padding: 1.5rem 1.25rem 3rem;
     border-right: none;
     box-shadow: none;
+    backdrop-filter: blur(10px) saturate(110%) brightness(1.02);
+    -webkit-backdrop-filter: blur(10px) saturate(110%) brightness(1.02);
   }
 
   .sidebar {
@@ -480,6 +914,17 @@ body {
 
   .sidebar {
     width: min(280px, 80vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sunlight-scene__grain,
+  .sunlight-leaf--drift {
+    animation: none;
+  }
+
+  .sunlight-scene__ambient {
+    opacity: calc(var(--dappled-enabled) * 0.8);
   }
 }
 
@@ -573,4 +1018,281 @@ body {
   padding: 1.5rem 2rem;
   border: 1px solid var(--color-fold);
   border-radius: 2px;
+}
+
+/* ============================================================
+   Unified Dappled Layer — CSS-Tricks effect + theme-switch architecture
+   ============================================================ */
+:root {
+  --dappled-paper-alpha: 0.72;
+  --dappled-shadow-color: rgba(50, 60, 75, 0.38);
+  --dappled-shadow-blur: 12px;
+  --dappled-shadow-opacity: 1;
+  --dappled-bokeh-color: rgba(255, 250, 235, 0.52);
+  --dappled-bokeh-blur: 28px;
+  --dappled-bokeh-opacity: 0.74;
+  --dappled-wash-1: rgba(255, 246, 231, 0.84);
+  --dappled-wash-2: rgba(255, 255, 255, 0.26);
+  --dappled-grain-opacity: 0.12;
+}
+
+[data-style="warm"] {
+  --dappled-paper-alpha: 0.70;
+  --dappled-shadow-color: rgba(85, 55, 22, 0.40);
+  --dappled-shadow-blur: 8px;
+  --dappled-bokeh-color: rgba(255, 235, 200, 0.58);
+  --dappled-bokeh-blur: 30px;
+  --dappled-bokeh-opacity: 0.80;
+  --dappled-wash-1: rgba(255, 225, 184, 0.88);
+  --dappled-wash-2: rgba(255, 244, 222, 0.28);
+  --dappled-grain-opacity: 0.14;
+}
+
+[data-style="sky"] {
+  --dappled-paper-alpha: 0.72;
+  --dappled-shadow-color: rgba(44, 76, 108, 0.34);
+  --dappled-shadow-blur: 10px;
+  --dappled-bokeh-color: rgba(235, 248, 255, 0.46);
+  --dappled-bokeh-blur: 26px;
+  --dappled-bokeh-opacity: 0.68;
+  --dappled-wash-1: rgba(221, 241, 255, 0.82);
+  --dappled-wash-2: rgba(255, 255, 255, 0.24);
+  --dappled-grain-opacity: 0.11;
+}
+
+[data-style="night"] {
+  --dappled-paper-alpha: 0.86;
+  --dappled-shadow-color: rgba(0, 4, 14, 0.44);
+  --dappled-shadow-blur: 14px;
+  --dappled-shadow-opacity: 0.7;
+  --dappled-bokeh-color: rgba(100, 145, 210, 0.18);
+  --dappled-bokeh-blur: 32px;
+  --dappled-bokeh-opacity: 0.48;
+  --dappled-wash-1: rgba(74, 102, 148, 0.2);
+  --dappled-wash-2: rgba(124, 170, 255, 0.06);
+  --dappled-grain-opacity: 0.16;
+}
+
+[data-style="spring"] {
+  --dappled-paper-alpha: 0.70;
+  --dappled-shadow-color: rgba(42, 72, 46, 0.36);
+  --dappled-shadow-blur: 10px;
+  --dappled-bokeh-color: rgba(235, 255, 220, 0.50);
+  --dappled-bokeh-blur: 27px;
+  --dappled-bokeh-opacity: 0.72;
+  --dappled-wash-1: rgba(228, 244, 214, 0.84);
+  --dappled-wash-2: rgba(244, 255, 239, 0.24);
+  --dappled-grain-opacity: 0.11;
+}
+
+body[data-dappled="off"] {
+  --dappled-paper-alpha: 0.96;
+}
+
+.dappled-layer {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body[data-dappled="off"] .dappled-layer {
+  display: none;
+}
+
+.dappled-layer__wash,
+.dappled-layer__shapes,
+.dappled-layer__grain {
+  position: absolute;
+  inset: 0;
+}
+
+.dappled-layer__wash {
+  inset: -12% -12% -6% -14%;
+  opacity: calc(var(--dappled-enabled) * 0.96);
+  background:
+    radial-gradient(42rem 28rem at 82% 4%, var(--dappled-wash-1) 0%, transparent 56%),
+    radial-gradient(30rem 24rem at 58% 18%, var(--dappled-wash-2) 0%, transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 72%);
+  filter: blur(38px);
+}
+
+.dappled-layer__shadows {
+  position: absolute;
+  inset: -8%;
+  filter: blur(var(--dappled-shadow-blur, 18px));
+  opacity: calc(var(--dappled-enabled) * var(--dappled-shadow-opacity, 1));
+  animation: dappledDrift 36s ease-in-out infinite alternate;
+}
+
+.dappled-layer__bokeh {
+  position: absolute;
+  inset: -8%;
+  filter: blur(var(--dappled-bokeh-blur, 28px));
+  mix-blend-mode: screen;
+  opacity: calc(var(--dappled-enabled) * var(--dappled-bokeh-opacity, 0.7));
+  animation: dappledDrift 30s ease-in-out -8s infinite alternate;
+}
+
+/* Leaf/canopy shadow fragments — elliptical, directional */
+.dappled-shadow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    var(--dappled-shadow-color) 0%,
+    transparent 68%
+  );
+}
+
+/* Branch shadows — long, thin, angled */
+.dappled-branch {
+  position: absolute;
+  border-radius: 40%;
+  background: linear-gradient(
+    90deg,
+    var(--dappled-shadow-color) 0%,
+    transparent 100%
+  );
+  transform-origin: left center;
+}
+
+/* Blinds light stripes — repeating diagonal light bands cutting through shadow */
+.dappled-blinds {
+  position: absolute;
+  inset: -20%;
+  background: repeating-linear-gradient(
+    var(--blinds-angle, -35deg),
+    transparent 0px,
+    transparent var(--blinds-gap, 18px),
+    var(--dappled-shadow-color) var(--blinds-gap, 18px),
+    var(--dappled-shadow-color) calc(var(--blinds-gap, 18px) + var(--blinds-width, 10px))
+  );
+}
+
+/* Window bar — thin structural shadow (vertical or horizontal) */
+.dappled-bar {
+  position: absolute;
+  background: linear-gradient(
+    var(--bar-dir, 180deg),
+    transparent 0%,
+    var(--dappled-shadow-color) 15%,
+    var(--dappled-shadow-color) 85%,
+    transparent 100%
+  );
+}
+
+/* Warm bokeh light spots */
+.dappled-bokeh {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--dappled-bokeh-color) 0%,
+    transparent 72%
+  );
+}
+
+.dappled-layer__grain {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.08) 0.55px, transparent 0.8px),
+    radial-gradient(rgba(31, 39, 49, 0.05) 0.55px, transparent 0.8px);
+  background-position: 0 0, 9px 12px;
+  background-size: 18px 18px, 23px 23px;
+  opacity: calc(var(--dappled-enabled) * var(--dappled-grain-opacity));
+  mix-blend-mode: soft-light;
+  animation: dappledNoise 2.2s steps(2) infinite;
+}
+
+.layout,
+.site-header,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.paper {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--color-paper-rgb), calc(var(--dappled-paper-alpha) + 0.05)) 0%,
+    rgba(var(--color-paper-rgb), var(--dappled-paper-alpha)) 38%,
+    rgba(var(--color-paper-rgb), calc(var(--dappled-paper-alpha) - 0.04)) 100%
+  );
+  backdrop-filter: blur(14px) saturate(118%) brightness(1.02);
+  -webkit-backdrop-filter: blur(14px) saturate(118%) brightness(1.02);
+}
+
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, transparent 28%, rgba(255, 255, 255, 0.08) 100%);
+}
+
+.paper > * {
+  position: relative;
+  z-index: 1;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .paper {
+    background: linear-gradient(
+      180deg,
+      rgba(var(--color-paper-rgb), 0.92) 0%,
+      rgba(var(--color-paper-rgb), 0.9) 100%
+    );
+  }
+}
+
+@keyframes dappledDrift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(-1.8rem, 1.2rem, 0) scale(1.02); }
+}
+
+@keyframes dappledNoise {
+  0% { transform: translate3d(0, 1rem, 0); }
+  20% { transform: translate3d(-0.75rem, -0.75rem, 0); }
+  40% { transform: translate3d(0.5rem, 1.25rem, 0); }
+  60% { transform: translate3d(-1rem, 0.25rem, 0); }
+  80% { transform: translate3d(0.75rem, -1rem, 0); }
+  100% { transform: translate3d(-0.5rem, 0, 0); }
+}
+
+@media (max-width: 768px) {
+  .dappled-layer__wash {
+    inset: -12% -18% -2% -22%;
+  }
+
+  .dappled-layer__shadows {
+    --dappled-shadow-blur: 14px;
+    --dappled-shadow-opacity: 0.8;
+  }
+
+  .dappled-layer__bokeh {
+    --dappled-bokeh-blur: 20px;
+    --dappled-bokeh-opacity: 0.5;
+  }
+
+  .dappled-layer__grain {
+    opacity: calc(var(--dappled-enabled) * 0.09);
+  }
+
+  .paper {
+    backdrop-filter: blur(10px) saturate(110%) brightness(1.02);
+    -webkit-backdrop-filter: blur(10px) saturate(110%) brightness(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dappled-layer__shadows,
+  .dappled-layer__bokeh,
+  .dappled-layer__grain {
+    animation: none;
+  }
 }

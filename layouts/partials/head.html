@@ -35,7 +35,8 @@
 <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css">
 
 <!-- Epistle 主样式 -->
-<link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+{{- $assetVersion := now.Unix -}}
+<link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ $assetVersion }}">
 
 {{ with .Site.Params.googleFonts }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
