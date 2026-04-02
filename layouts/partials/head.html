@@ -38,6 +38,11 @@
 {{- $assetVersion := now.Unix -}}
 <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ $assetVersion }}">
 
+<!-- 自定义样式（站点 static/css/custom.css，存在时加载） -->
+{{ if fileExists "static/css/custom.css" -}}
+<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}?v={{ $assetVersion }}">
+{{- end }}
+
 {{ with .Site.Params.googleFonts }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
