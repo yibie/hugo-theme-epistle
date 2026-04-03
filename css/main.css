@@ -14,9 +14,8 @@
   --color-fold:    rgba(28, 35, 51, 0.08);
   --shadow-paper:  0 2px 20px rgba(0, 0, 0, 0.08);
 
-  --font-body:     "Inter", -apple-system, "Helvetica Neue", system-ui,
-                   "Source Han Serif SC", "Noto Serif SC", "Songti SC", "Songti TC", "STSong", "SimSun", serif;
-  --font-signature: "Caveat", "Dancing Script", cursive;
+  --font-body:     "Source Han Serif CN VF", "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", "宋体", serif;
+  --font-signature: "QIJIFALLBACK", "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
 
   --width-content: 44rem;
   --width-sidebar: 14rem;
@@ -532,7 +531,7 @@ body[data-dappled="off"] .sunlight-scene {
 
   /* 竖排文字 */
   writing-mode: vertical-rl;
-  font-family: "Songti SC", "Songti TC", "STSong", "SimSun", "宋体", serif;
+  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 0.25em;
@@ -573,7 +572,7 @@ body[data-dappled="off"] .sunlight-scene {
 }
 
 .letter .letter-title {
-  font-family: "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
+  font-family: var(--font-signature);
   font-size: 2rem;
   font-weight: 400;
   line-height: 1.4;
@@ -585,7 +584,7 @@ body[data-dappled="off"] .sunlight-scene {
 .letter-body h4,
 .letter-body h5,
 .letter-body h6 {
-  font-family: "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
+  font-family: "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", "AR PL UKai CN", serif;
   font-weight: 400;
 }
 
