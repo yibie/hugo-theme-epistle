@@ -43,9 +43,10 @@
 <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}?v={{ $assetVersion }}">
 {{- end }}
 
-<!-- 中文 Web 字体：思源宋体（正文）+ 齐伋体（签名）-->
+<!-- 中文 Web 字体：思源宋体（正文）+ 齐伋体（标题）+ 霞鹜文楷（签名）-->
 <link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/syst/dist/SourceHanSerifCN/result.css">
-<link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/yozai/dist/Yozai-Bold/result.css">
+<link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/hldqjt/dist/qiji-fallback/result.css">
+<link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/lywkpmydb/dist/LXGWWenKaiMonoScreen/result.css">
 
 {{ with .Site.Params.googleFonts }}
 <link href="{{ . }}" rel="stylesheet">
