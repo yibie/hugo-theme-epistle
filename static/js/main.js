@@ -47,14 +47,14 @@
   // 大面积暗区（树冠遮挡）+ 亮光斑（叶隙透光）
   function generateCanopy(sF, bF) {
     var angle = -30;
-    // ── 暗区：3-4 块大的不规则遮挡 ──
-    shadowMass(sF, 5, -15, 55, 40, angle + R()*10, 0.7 + R()*0.25);
-    shadowMass(sF, 35, 10, 50, 35, angle - 5 + R()*8, 0.6 + R()*0.25);
-    shadowMass(sF, -5, 30, 45, 38, angle + R()*12, 0.55 + R()*0.2);
-    shadowMass(sF, 50, 40, 40, 30, angle + 5 + R()*8, 0.5 + R()*0.2);
+    // ── 暗区：沿光源方向拉伸（~-30deg 斜射）──
+    shadowMass(sF, 5, -15, 75, 22, angle + R()*10, 0.7 + R()*0.25);
+    shadowMass(sF, 35, 10, 70, 20, angle - 5 + R()*8, 0.6 + R()*0.25);
+    shadowMass(sF, -5, 30, 65, 24, angle + R()*12, 0.55 + R()*0.2);
+    shadowMass(sF, 50, 40, 60, 18, angle + 5 + R()*8, 0.5 + R()*0.2);
     // 中等暗块填充间隙
     for (var i = 0; i < 8; i++) {
-      var w = 15 + R() * 25, h = 12 + R() * 20;
+      var w = 25 + R() * 35, h = 8 + R() * 12;
       shadowMass(sF, R()*90, R()*80, w, h, angle + R()*20 - 10, 0.35 + R()*0.25);
     }
 
@@ -72,13 +72,13 @@
   // ═══ warm: 暖光条穿过树冠 ═══
   function generateBlinds(sF, bF) {
     var angle = -30;
-    // ── 暗区：树冠遮挡（偏右上，像窗外的树）──
-    shadowMass(sF, 40, -10, 60, 45, angle + R()*8, 0.7 + R()*0.25);
-    shadowMass(sF, 55, 20, 50, 35, angle - 3 + R()*6, 0.6 + R()*0.2);
-    shadowMass(sF, 30, 40, 45, 30, angle + R()*10, 0.5 + R()*0.2);
+    // ── 暗区：树冠遮挡，沿斜射方向拉伸 ──
+    shadowMass(sF, 40, -10, 80, 24, angle + R()*8, 0.7 + R()*0.25);
+    shadowMass(sF, 55, 20, 70, 20, angle - 3 + R()*6, 0.6 + R()*0.2);
+    shadowMass(sF, 30, 40, 65, 18, angle + R()*10, 0.5 + R()*0.2);
     // 中等暗块
     for (var i = 0; i < 6; i++) {
-      var w = 12 + R() * 22, h = 10 + R() * 18;
+      var w = 22 + R() * 30, h = 7 + R() * 12;
       shadowMass(sF, 30 + R()*60, R()*70, w, h, angle + R()*16 - 8, 0.35 + R()*0.25);
     }
 
@@ -89,41 +89,46 @@
     }
   }
 
-  // ═══ sky: 窗光穿过 ═══
+  // ═══ sky: 右上方十字窗投影 ═══
+  // 斜射光穿过十字窗，投影拉伸变形
   function generateFrenchWindow(sF, bF) {
     var angle = -30, i;
-    // ── 暗区：轻度遮挡（窗框 + 窗外树影）──
-    // 窗框用 bar
-    var vx = [26, 52, 78];
-    for (i = 0; i < 3; i++) {
-      mk(sF, 'dappled-bar',
-        'left:' + (vx[i] + R()*2 - 1) + '%;top:-5%;width:' + (0.7 + R()*0.3) + 'vw;height:110%;--bar-dir:180deg;opacity:' + (0.3 + R()*0.2).toFixed(2) + ';transform:rotate(-2deg)');
-    }
-    var hy = [28, 54, 78];
-    for (i = 0; i < 3; i++) {
-      mk(sF, 'dappled-bar',
-        'top:' + (hy[i] + R()*2) + '%;left:-5%;height:' + (0.5 + R()*0.25) + 'vw;width:110%;--bar-dir:90deg;opacity:' + (0.25 + R()*0.2).toFixed(2) + ';transform:rotate(-4deg)');
-    }
-    // 窗边暗区（树影轮廓）
-    shadowMass(sF, -5, 5, 30, 50, angle + R()*8, 0.3 + R()*0.2);
-    shadowMass(sF, 75, 10, 30, 55, angle - 3 + R()*6, 0.3 + R()*0.2);
 
-    // ── 亮区：大面积亮白光条 ──
-    lightRays(bF, 5, angle, [9, 18], [100, 150], [0.65, 0.95]);
+    // ── 十字窗框投影（拉伸的暗条）──
+    // 竖框投影：斜射后拉长，从右上往左下延伸
+    shadowMass(sF, 38, -15, 85, 4, angle + 2, 0.7 + R()*0.2);
+    // 横框投影：斜射后也变斜，比竖框更宽更短
+    shadowMass(sF, 15, 22, 75, 5, angle + 60 + R()*4, 0.65 + R()*0.2);
+
+    // 窗框四边（淡）
+    shadowMass(sF, -5, -10, 90, 3, angle + 2, 0.35 + R()*0.15);  // 左边框
+    shadowMass(sF, 70, -15, 85, 3, angle + 2, 0.3 + R()*0.15);   // 右边框
+    shadowMass(sF, -8, -5, 60, 3, angle + 62, 0.3 + R()*0.12);   // 上边框
+    shadowMass(sF, -5, 55, 65, 3, angle + 58, 0.25 + R()*0.12);  // 下边框
+
+    // ── 四个窗格区域的明暗不均 ──
+    // 轻微暗区打破四格的均匀感
+    for (i = 0; i < 4; i++) {
+      var w = 20 + R()*18, h = 8 + R()*8;
+      shadowMass(sF, 5 + R()*70, R()*70, w, h, angle + R()*16 - 8, 0.15 + R()*0.15);
+    }
+
+    // ── 亮区：光穿过四个窗格 ──
+    lightRays(bF, 4, angle, [10, 20], [90, 140], [0.6, 0.9]);
     for (i = 0; i < 8; i++) {
-      lightSpot(bF, 10 + R()*80, R()*85, 7 + R()*14, 0.5 + R()*0.4);
+      lightSpot(bF, 8 + R()*82, R()*82, 8 + R()*14, 0.45 + R()*0.4);
     }
   }
 
   // ═══ night: 月光散射 ═══
   function generateMoonlight(sF, bF) {
     var angle = -25;
-    // ── 暗区：大面积柔和遮挡 ──
-    shadowMass(sF, 10, 0, 50, 40, angle + R()*10, 0.25 + R()*0.15);
-    shadowMass(sF, 40, 25, 45, 35, angle + R()*8, 0.2 + R()*0.15);
-    shadowMass(sF, 20, 50, 40, 30, angle + R()*10, 0.18 + R()*0.12);
+    // ── 暗区：大面积柔和遮挡，斜射拉伸 ──
+    shadowMass(sF, 10, 0, 65, 22, angle + R()*10, 0.25 + R()*0.15);
+    shadowMass(sF, 40, 25, 60, 20, angle + R()*8, 0.2 + R()*0.15);
+    shadowMass(sF, 20, 50, 55, 18, angle + R()*10, 0.18 + R()*0.12);
     for (var i = 0; i < 5; i++) {
-      var w = 15 + R()*20, h = 12 + R()*18;
+      var w = 25 + R()*30, h = 8 + R()*12;
       shadowMass(sF, R()*85, R()*75, w, h, angle + R()*16 - 8, 0.12 + R()*0.15);
     }
 
@@ -136,14 +141,14 @@
   // ═══ spring: 散射光斑 + 细碎遮挡 ═══
   function generateFineLeaves(sF, bF) {
     var angle = -28;
-    // ── 暗区：多个中等遮挡（比 default 更碎）──
+    // ── 暗区：多个中等遮挡，斜射拉伸 ──
     for (var i = 0; i < 10; i++) {
-      var w = 12 + R()*20, h = 10 + R()*16;
+      var w = 22 + R()*28, h = 7 + R()*10;
       shadowMass(sF, R()*95, R()*85, w, h, angle + R()*24 - 12, 0.25 + R()*0.2);
     }
     // 几块稍大的
-    shadowMass(sF, 15, 10, 35, 28, angle + R()*10, 0.3 + R()*0.2);
-    shadowMass(sF, 50, 30, 30, 25, angle + R()*8, 0.28 + R()*0.18);
+    shadowMass(sF, 15, 10, 50, 16, angle + R()*10, 0.3 + R()*0.2);
+    shadowMass(sF, 50, 30, 45, 14, angle + R()*8, 0.28 + R()*0.18);
 
     // ── 亮区：大量暖色散射光斑 ──
     for (i = 0; i < 22; i++) {

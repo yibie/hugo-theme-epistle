@@ -1199,6 +1199,14 @@ body[data-dappled="off"] .dappled-layer {
   );
 }
 
+/* Diamond shadow grid — dark rounded diamonds, bright gaps = light through window */
+.dappled-diamond {
+  position: absolute;
+  background: var(--dappled-shadow-color);
+  border-radius: 22%;
+  transform: rotate(45deg);
+}
+
 /* Warm bokeh light spots */
 .dappled-bokeh {
   position: absolute;
