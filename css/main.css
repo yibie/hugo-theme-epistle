@@ -518,45 +518,48 @@ body[data-dappled="off"] .sunlight-scene {
 /* ── 信笺索引标签 ── */
 .index-tab {
   position: fixed;
-  right: 0;
+  right: -2px;
   top: 5rem;
   z-index: 200;
 
-  /* 信笺标签外观 */
-  background: linear-gradient(135deg, #C4A77D 0%, #B89A6B 100%);
-  color: #3D3225;
-  border: none;
-  border-radius: 6px 0 0 6px;
-  padding: 0.6rem 0.75rem;
+  /* 牛皮纸标签页 */
+  background: rgba(var(--color-paper-rgb), 0.7);
+  color: var(--color-meta);
+  border: 1px solid var(--color-fold);
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  padding: 0.8rem 0.35rem;
 
-  /* 宋体字体 */
+  /* 竖排文字 */
+  writing-mode: vertical-rl;
   font-family: "Songti SC", "Songti TC", "STSong", "SimSun", "宋体", serif;
-  
-  /* 文字横排 */
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: none;
   appearance: none;
-  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: -1px 1px 4px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .index-tab:focus,
 .index-tab:focus-visible { outline: none; }
 
 .index-tab:hover {
-  background: linear-gradient(135deg, #D4B78D 0%, #C8AA7B 100%);
-  padding-right: 1rem;
-  box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(var(--color-paper-rgb), 0.88);
+  padding-right: 0.5rem;
+  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.1);
+  color: var(--color-ink);
 }
 
 .index-tab.is-active {
-  background: linear-gradient(135deg, #A08050 0%, #8F7340 100%);
-  color: #F5F0E8;
+  background: rgba(var(--color-paper-rgb), 0.92);
+  color: var(--color-ink);
   /* 跟随侧边栏移动到其内部 */
   right: min(320px, 85vw);
 }
@@ -903,8 +906,8 @@ body[data-dappled="off"] .sunlight-scene {
 
   /* 移动端标签调整 */
   .index-tab {
-    padding: 0.5rem 0.6rem;
-    font-size: 0.8rem;
+    padding: 0.6rem 0.3rem;
+    font-size: 0.7rem;
     top: 4rem;
   }
 
@@ -1197,6 +1200,14 @@ body[data-dappled="off"] .dappled-layer {
     var(--dappled-shadow-color) 85%,
     transparent 100%
   );
+}
+
+/* Diamond shadow grid — dark rounded diamonds, bright gaps = light through window */
+.dappled-diamond {
+  position: absolute;
+  background: var(--dappled-shadow-color);
+  border-radius: 22%;
+  transform: rotate(45deg);
 }
 
 /* Warm bokeh light spots */
