@@ -1025,12 +1025,13 @@ body[data-dappled="off"] .sunlight-scene {
    ============================================================ */
 :root {
   --dappled-paper-alpha: 0.72;
-  --dappled-shadow-color: rgba(50, 60, 75, 0.38);
-  --dappled-shadow-blur: 12px;
+  --dappled-shadow-color: rgba(40, 50, 65, 0.62);
+  --dappled-shadow-blur: 20px;
   --dappled-shadow-opacity: 1;
-  --dappled-bokeh-color: rgba(255, 250, 235, 0.52);
-  --dappled-bokeh-blur: 28px;
-  --dappled-bokeh-opacity: 0.74;
+  --dappled-light-color: rgba(255, 255, 255, 0.6);
+  --dappled-bokeh-color: rgba(255, 248, 230, 0.85);
+  --dappled-bokeh-blur: 18px;
+  --dappled-bokeh-opacity: 0.9;
   --dappled-wash-1: rgba(255, 246, 231, 0.84);
   --dappled-wash-2: rgba(255, 255, 255, 0.26);
   --dappled-grain-opacity: 0.12;
@@ -1038,11 +1039,12 @@ body[data-dappled="off"] .sunlight-scene {
 
 [data-style="warm"] {
   --dappled-paper-alpha: 0.70;
-  --dappled-shadow-color: rgba(85, 55, 22, 0.40);
-  --dappled-shadow-blur: 8px;
-  --dappled-bokeh-color: rgba(255, 235, 200, 0.58);
-  --dappled-bokeh-blur: 30px;
-  --dappled-bokeh-opacity: 0.80;
+  --dappled-shadow-color: rgba(75, 45, 15, 0.64);
+  --dappled-shadow-blur: 18px;
+  --dappled-light-color: rgba(255, 245, 220, 0.65);
+  --dappled-bokeh-color: rgba(255, 238, 200, 0.88);
+  --dappled-bokeh-blur: 16px;
+  --dappled-bokeh-opacity: 0.92;
   --dappled-wash-1: rgba(255, 225, 184, 0.88);
   --dappled-wash-2: rgba(255, 244, 222, 0.28);
   --dappled-grain-opacity: 0.14;
@@ -1050,11 +1052,12 @@ body[data-dappled="off"] .sunlight-scene {
 
 [data-style="sky"] {
   --dappled-paper-alpha: 0.72;
-  --dappled-shadow-color: rgba(44, 76, 108, 0.34);
-  --dappled-shadow-blur: 10px;
-  --dappled-bokeh-color: rgba(235, 248, 255, 0.46);
-  --dappled-bokeh-blur: 26px;
-  --dappled-bokeh-opacity: 0.68;
+  --dappled-shadow-color: rgba(34, 66, 98, 0.54);
+  --dappled-shadow-blur: 16px;
+  --dappled-light-color: rgba(255, 255, 255, 0.7);
+  --dappled-bokeh-color: rgba(240, 250, 255, 0.82);
+  --dappled-bokeh-blur: 14px;
+  --dappled-bokeh-opacity: 0.92;
   --dappled-wash-1: rgba(221, 241, 255, 0.82);
   --dappled-wash-2: rgba(255, 255, 255, 0.24);
   --dappled-grain-opacity: 0.11;
@@ -1062,12 +1065,13 @@ body[data-dappled="off"] .sunlight-scene {
 
 [data-style="night"] {
   --dappled-paper-alpha: 0.86;
-  --dappled-shadow-color: rgba(0, 4, 14, 0.44);
-  --dappled-shadow-blur: 14px;
+  --dappled-shadow-color: rgba(0, 4, 14, 0.48);
+  --dappled-shadow-blur: 22px;
   --dappled-shadow-opacity: 0.7;
-  --dappled-bokeh-color: rgba(100, 145, 210, 0.18);
-  --dappled-bokeh-blur: 32px;
-  --dappled-bokeh-opacity: 0.48;
+  --dappled-light-color: rgba(200, 215, 240, 0.3);
+  --dappled-bokeh-color: rgba(180, 200, 240, 0.35);
+  --dappled-bokeh-blur: 22px;
+  --dappled-bokeh-opacity: 0.65;
   --dappled-wash-1: rgba(74, 102, 148, 0.2);
   --dappled-wash-2: rgba(124, 170, 255, 0.06);
   --dappled-grain-opacity: 0.16;
@@ -1075,11 +1079,12 @@ body[data-dappled="off"] .sunlight-scene {
 
 [data-style="spring"] {
   --dappled-paper-alpha: 0.70;
-  --dappled-shadow-color: rgba(42, 72, 46, 0.36);
-  --dappled-shadow-blur: 10px;
-  --dappled-bokeh-color: rgba(235, 255, 220, 0.50);
-  --dappled-bokeh-blur: 27px;
-  --dappled-bokeh-opacity: 0.72;
+  --dappled-shadow-color: rgba(32, 62, 36, 0.56);
+  --dappled-shadow-blur: 16px;
+  --dappled-light-color: rgba(255, 252, 235, 0.55);
+  --dappled-bokeh-color: rgba(255, 245, 210, 0.82);
+  --dappled-bokeh-blur: 16px;
+  --dappled-bokeh-opacity: 0.88;
   --dappled-wash-1: rgba(228, 244, 214, 0.84);
   --dappled-wash-2: rgba(244, 255, 239, 0.24);
   --dappled-grain-opacity: 0.11;
@@ -1121,7 +1126,7 @@ body[data-dappled="off"] .dappled-layer {
 .dappled-layer__shadows {
   position: absolute;
   inset: -8%;
-  filter: blur(var(--dappled-shadow-blur, 18px));
+  filter: blur(var(--dappled-shadow-blur, 4px));
   opacity: calc(var(--dappled-enabled) * var(--dappled-shadow-opacity, 1));
   animation: dappledDrift 36s ease-in-out infinite alternate;
 }
@@ -1129,8 +1134,7 @@ body[data-dappled="off"] .dappled-layer {
 .dappled-layer__bokeh {
   position: absolute;
   inset: -8%;
-  filter: blur(var(--dappled-bokeh-blur, 28px));
-  mix-blend-mode: screen;
+  filter: blur(var(--dappled-bokeh-blur, 18px));
   opacity: calc(var(--dappled-enabled) * var(--dappled-bokeh-opacity, 0.7));
   animation: dappledDrift 30s ease-in-out -8s infinite alternate;
 }
@@ -1143,6 +1147,18 @@ body[data-dappled="off"] .dappled-layer {
     ellipse,
     var(--dappled-shadow-color) 0%,
     transparent 68%
+  );
+}
+
+/* Large shadow mass — tree canopy blocking area, soft edges */
+.dappled-mass {
+  position: absolute;
+  border-radius: 42% 58% 55% 45% / 48% 40% 60% 52%;
+  background: radial-gradient(
+    ellipse,
+    var(--dappled-shadow-color) 0%,
+    rgba(0,0,0,0.02) 65%,
+    transparent 85%
   );
 }
 
@@ -1191,6 +1207,18 @@ body[data-dappled="off"] .dappled-layer {
     circle,
     var(--dappled-bokeh-color) 0%,
     transparent 72%
+  );
+}
+
+/* Light rays — bright streaks from window/canopy (screen blend) */
+.dappled-light {
+  position: absolute;
+  background: linear-gradient(
+    var(--light-dir, 90deg),
+    transparent 0%,
+    var(--dappled-light-color) 18%,
+    var(--dappled-light-color) 82%,
+    transparent 100%
   );
 }
 
