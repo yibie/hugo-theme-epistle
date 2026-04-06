@@ -15,7 +15,7 @@
   --shadow-paper:  0 2px 20px rgba(0, 0, 0, 0.08);
 
   --font-body:     "Source Han Serif CN VF", "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", "宋体", serif;
-  --font-title:     "QIJIFALLBACK", "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
+  --font-title:     "LXGW WenKai Mono Screen", "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
   --font-signature: "LXGW WenKai Mono Screen", "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
 
   --width-content: 44rem;
@@ -574,7 +574,7 @@ body[data-dappled="off"] .sunlight-scene {
 
 .letter .letter-title {
   font-family: var(--font-title);
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 400;
   line-height: 1.4;
 }
@@ -635,7 +635,7 @@ body[data-dappled="off"] .sunlight-scene {
 
 .signature-text {
   font-family: var(--font-signature);
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: var(--color-ink);
 }
 
