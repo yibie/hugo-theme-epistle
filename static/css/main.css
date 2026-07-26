@@ -200,7 +200,8 @@ body[data-dappled="off"] {
   -webkit-appearance: none;
   appearance: none;
   box-shadow: -1px 1px 4px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  /* 位移与侧栏同通道（transform）同时长，保证同步滑动 */
+  transition: transform 0.35s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, padding 0.2s ease;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -218,8 +219,8 @@ body[data-dappled="off"] {
 .index-tab.is-active {
   background: rgba(var(--color-paper-rgb), 0.92);
   color: var(--color-ink);
-  /* 跟随侧边栏移动到其内部 */
-  right: min(320px, 85vw);
+  /* 跟随侧边栏移动：与侧栏相同的位移距离 */
+  transform: translateX(calc(-1 * min(320px, 85vw) - 2px));
 }
 
 /* ── 信件正文结构 ── */
@@ -467,16 +468,22 @@ body[data-dappled="off"] {
   margin-bottom: 1.5rem;
 }
 
-/* ── 移动端侧边栏遮罩 ── */
+/* ── 侧边栏遮罩：与侧栏同时长淡入淡出 ── */
 .sidebar-overlay {
-  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.35);
   z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
 }
 
-.sidebar-overlay.is-visible { display: block; }
+.sidebar-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s ease;
+}
 
 /* ── 页脚 ── */
 .site-footer {
@@ -534,7 +541,7 @@ body[data-dappled="off"] {
   }
 
   .index-tab.is-active {
-    right: min(280px, 80vw);
+    transform: translateX(calc(-1 * min(280px, 80vw) - 2px));
   }
 
   .sidebar {
