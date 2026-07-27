@@ -21,7 +21,7 @@ Epistle（尺素）将博客构想为**书桌上的一叠私人信札**：
 
 ## 预览
 
-![Epistle 主题预览](images/screenshot.png)
+![Epistle 最新设计预览](images/screenshot.png)
 
 ---
 
