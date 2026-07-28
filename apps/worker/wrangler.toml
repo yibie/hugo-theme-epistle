@@ -3,7 +3,10 @@ main = "src/index.js"
 compatibility_date = "2026-07-28"
 
 [vars]
+ALLOWED_ORIGINS = "https://www.gtdstudy.com"
+TURNSTILE_EXPECTED_HOSTNAME = "www.gtdstudy.com"
 TURNSTILE_EXPECTED_ACTION = "guestbook-submit"
-# Configure ALLOWED_ORIGINS, TURNSTILE_EXPECTED_HOSTNAME,
-# GITHUB_INBOX_OWNER, GITHUB_INBOX_REPO and GITHUB_ASSIGNEE for your site.
+GITHUB_INBOX_OWNER = "yibie"
+GITHUB_INBOX_REPO = "epistle-guestbook-inbox"
+GITHUB_ASSIGNEE = "yibie"
 # Store TURNSTILE_SECRET_KEY and GITHUB_TOKEN with `wrangler secret put`.

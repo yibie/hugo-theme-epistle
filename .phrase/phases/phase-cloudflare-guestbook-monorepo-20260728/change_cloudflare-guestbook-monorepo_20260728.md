@@ -18,3 +18,5 @@ change015 日期:2026-07-28 | 文件:exampleSite/content/guestbook,exampleSite/h
 change016 日期:2026-07-28 | 文件:README.md,docs/guestbook.md | 操作:Modify | 影响:部署与运行手册 | 说明:说明私人收件、GitHub 邮件通知、审核回复、最小权限、排错和回滚步骤 | 关联:task008
 change017 日期:2026-07-28 | 文件:.omx/state/guestbook/ralph-progress.json | 操作:Add | 影响:可视验收证据 | 说明:记录桌面与移动端 visual-verdict 93 分通过结论 | 关联:task009
 change018 日期:2026-07-28 | 文件:.phrase/phases/phase-cloudflare-guestbook-monorepo-20260728/task_cloudflare-guestbook-monorepo_20260728.md | 操作:Modify | 影响:任务闭环 | 说明:回写 task002-task009 的实现与验证完成状态 | 关联:task009
+change019 日期:2026-07-29 | 文件:apps/worker/wrangler.toml | 操作:Modify | 影响:正式 Worker 环境 | 说明:锁定正式站点来源、Turnstile hostname 与私人 inbox 仓库目标 | 关联:task010
+change020 日期:2026-07-29 | 文件:.phrase/phases/phase-cloudflare-guestbook-monorepo-20260728/task_cloudflare-guestbook-monorepo_20260728.md | 操作:Modify | 影响:任务闭环 | 说明:记录 Cloudflare Worker 与 GitHub Pages 正式部署验证结果 | 关联:task010

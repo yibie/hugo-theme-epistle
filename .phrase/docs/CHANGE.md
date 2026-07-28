@@ -19,6 +19,8 @@
 - `change016` — `README.md`、`docs/guestbook.md`：补齐部署、审核、排错和回滚说明（task008）
 - `change017` — `.omx/state/guestbook/ralph-progress.json`：记录 visual-verdict 93 分通过证据（task009）
 - `change018` — `task_*`：回写 task002-task009 完成状态（task009）
+- `change019` — `apps/worker/wrangler.toml`：锁定正式 Worker 的来源、Turnstile 与私人 inbox 配置（task010）
+- `change020` — `task_*`：记录正式 Worker 与 GitHub Pages 部署验证结果（task010）
 
 ## phase-dappled-light-20260402
 - `change001` — `assets/css/main.css`：新增斑驳树影变量、桌面环境光与纸面光影伪元素（task001）
