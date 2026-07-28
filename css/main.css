@@ -309,6 +309,19 @@ body[data-dappled="off"] {
   color: var(--color-meta);
 }
 
+.letter-guestbook-cta {
+  margin-top: 2.5rem;
+  color: var(--color-meta);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.letter-guestbook-cta a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
 /* ── 信件导航 ── */
 .letter-nav {
   margin-top: 3rem;
@@ -932,6 +945,10 @@ body[data-dappled="off"] .dappled-layer {
 }
 
 /* ── Guestbook ── */
+.page-guestbook .paper {
+  width: 100%;
+}
+
 .guestbook-intro,
 .guestbook-help,
 .guestbook-status,
@@ -955,6 +972,15 @@ body[data-dappled="off"] .dappled-layer {
 .guestbook-form {
   display: grid;
   gap: 1rem;
+}
+
+.guestbook-form p {
+  margin-block: 0;
+}
+
+.guestbook-error:empty,
+.guestbook-status:empty {
+  display: none;
 }
 
 .guestbook-field {
