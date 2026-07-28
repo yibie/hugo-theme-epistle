@@ -1,0 +1,49 @@
+{{ define "main" }}
+{{- $hetiClass := partial "heti-class.html" (dict "heti_font" .Params.heti_font "heti_mode" .Params.heti_mode) -}}
+{{- $entries := .Pages.ByDate.Reverse -}}
+<article class="letter guestbook {{ $hetiClass }}" id="top">
+  <header class="letter-header">
+    <h1 class="letter-title">{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="guestbook-intro">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{ partial "guestbook-form.html" . }}
+
+  <section class="guestbook-entries" aria-labelledby="guestbook-entries-title">
+    <h2 id="guestbook-entries-title">来信</h2>
+    {{ if $entries }}
+    <ol class="guestbook-list">
+      {{ range $entries }}
+      <li class="guestbook-entry">
+        <article>
+          <header class="guestbook-entry__header">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年1月2日" }}</time>
+          </header>
+          {{ with .Params.message }}
+          <p class="guestbook-message">{{ . }}</p>
+          {{ end }}
+          {{ with .Params.reply }}
+          <div class="guestbook-reply">
+            <h4>回信</h4>
+            <p>{{ . }}</p>
+          </div>
+          {{ end }}
+        </article>
+      </li>
+      {{ end }}
+    </ol>
+    {{ else }}
+    <div class="guestbook-empty">
+      <p>还没有来信。</p>
+      <a href="#guestbook-form" class="guestbook-empty__action">写第一封</a>
+    </div>
+    {{ end }}
+  </section>
+</article>
+{{- if .Site.Params.guestbook.enabled }}
+<script src="{{ "js/guestbook.js" | relURL }}?v={{ now.Unix }}"></script>
+{{- end }}
+{{ end }}

@@ -33,13 +33,13 @@
   </footer>
 
   <nav class="letter-nav" aria-label="信件导航">
-    {{ with .Next }}
+    {{ with .NextInSection }}
     <a href="{{ .Permalink }}" class="letter-nav__link letter-nav__link--next">
       <span class="letter-nav__label">下一封</span>
       <span class="letter-nav__title">{{ .Title }}</span>
     </a>
     {{ end }}
-    {{ with .Prev }}
+    {{ with .PrevInSection }}
     <a href="{{ .Permalink }}" class="letter-nav__link letter-nav__link--prev">
       <span class="letter-nav__label">上一封</span>
       <span class="letter-nav__title">{{ .Title }}</span>

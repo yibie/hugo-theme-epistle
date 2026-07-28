@@ -1,0 +1,111 @@
+name: Publish approved guestbook letter to Hugo
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  publish:
+    if: >-
+      github.event.label.name == 'publish' &&
+      contains(github.event.issue.labels.*.name, 'guestbook')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch private issue comments
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: >-
+          gh api --paginate
+          "repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments"
+          > "${RUNNER_TEMP}/guestbook-comments.json"
+
+      - name: Require pinned guestbook publisher
+        env:
+          GUESTBOOK_SYSTEM_REF: ${{ vars.GUESTBOOK_SYSTEM_REF }}
+        run: |
+          if [[ ! "$GUESTBOOK_SYSTEM_REF" =~ ^[0-9a-fA-F]{40}$ ]]; then
+            echo "GUESTBOOK_SYSTEM_REF must be a 40-character Epistle commit SHA."
+            exit 1
+          fi
+
+      - name: Checkout Hugo source
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.BLOG_REPOSITORY }}
+          token: ${{ secrets.BLOG_PUBLISH_TOKEN }}
+          ref: ${{ vars.BLOG_BASE_BRANCH || 'main' }}
+          path: blog
+          persist-credentials: false
+
+      - name: Checkout Epistle guestbook publisher
+        uses: actions/checkout@v4
+        with:
+          repository: yibie/hugo-theme-epistle
+          ref: ${{ vars.GUESTBOOK_SYSTEM_REF }}
+          path: guestbook-system
+          persist-credentials: false
+
+      - name: Render approved letter
+        id: render
+        continue-on-error: true
+        env:
+          GUESTBOOK_CONTENT_DIR: ${{ vars.GUESTBOOK_CONTENT_DIR }}
+          GUESTBOOK_MAINTAINERS: ${{ vars.GUESTBOOK_MAINTAINERS }}
+        run: |
+          node guestbook-system/packages/hugo-publisher/src/cli.mjs \
+            --event "${GITHUB_EVENT_PATH}" \
+            --comments "${RUNNER_TEMP}/guestbook-comments.json" \
+            --output "blog/${GUESTBOOK_CONTENT_DIR:-content/guestbook}" \
+            --maintainers "${GUESTBOOK_MAINTAINERS}" \
+            2>"${RUNNER_TEMP}/guestbook-publish-error.txt"
+
+      - name: Report publication failure
+        if: steps.render.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          {
+            printf '%s\n\n' 'Guestbook publication was skipped:'
+            head -c 1000 "${RUNNER_TEMP}/guestbook-publish-error.txt"
+          } > "${RUNNER_TEMP}/guestbook-publish-comment.txt"
+          gh issue comment "$ISSUE_NUMBER" \
+            --repo "$GITHUB_REPOSITORY" \
+            --body-file "${RUNNER_TEMP}/guestbook-publish-comment.txt"
+          exit 1
+
+      - name: Create or update publication pull request
+        working-directory: blog
+        env:
+          GH_TOKEN: ${{ secrets.BLOG_PUBLISH_TOKEN }}
+          BLOG_REPOSITORY: ${{ vars.BLOG_REPOSITORY }}
+          BLOG_BASE_BRANCH: ${{ vars.BLOG_BASE_BRANCH }}
+          GUESTBOOK_CONTENT_DIR: ${{ vars.GUESTBOOK_CONTENT_DIR }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          branch="guestbook/issue-${ISSUE_NUMBER}"
+          base="${BLOG_BASE_BRANCH:-main}"
+          git config user.name "epistle-guestbook[bot]"
+          git config user.email "epistle-guestbook[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add "${GUESTBOOK_CONTENT_DIR:-content/guestbook}"
+          if git diff --cached --quiet; then
+            echo "No publication changes."
+            exit 0
+          fi
+          git commit -m "Publish approved guestbook letter #${ISSUE_NUMBER}"
+          gh auth setup-git
+          git push --force origin "$branch"
+          if [ "$(gh pr list --repo "$BLOG_REPOSITORY" --head "$branch" --state open --json number --jq length)" = "0" ]; then
+            gh pr create \
+              --repo "$BLOG_REPOSITORY" \
+              --base "$base" \
+              --head "$branch" \
+              --title "Publish approved guestbook letter #${ISSUE_NUMBER}" \
+              --body "Generated from an approved private guestbook issue."
+          fi

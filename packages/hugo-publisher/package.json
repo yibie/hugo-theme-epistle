@@ -1,0 +1,15 @@
+{
+  "name": "@epistle/guestbook-hugo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "epistle-guestbook-hugo": "src/cli.mjs"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

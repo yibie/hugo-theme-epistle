@@ -35,6 +35,7 @@ Epistle（尺素）将博客构想为**书桌上的一叠私人信札**：
 | **斑驳树影** | 以纯 JS + CSS 生成遮挡投影、分段模糊与纸面颗粒，模拟午后树荫/窗影落在信纸上的空间感 |
 | **楷体标题** | 文章标题使用楷体，营造手写感 |
 | **信笺索引** | 右侧「信匣」按钮，抽屉式展开归档 |
+| **私人留言板** | 可选的 Cloudflare 收件入口；匿名来信先进入私人 GitHub 收件箱，获许可且经站长回复后才会公开 |
 | **轻量无依赖** | 纯原生 CSS/JS，无框架负担 |
 | **社交预览** | 自动生成 Open Graph / Twitter Card 元标签，Telegram、微信、X 分享均显示标题、描述与封面图 |
 
@@ -55,6 +56,18 @@ git submodule add https://github.com/yibie/hugo-theme-epistle.git themes/epistle
 ```toml
 theme = 'epistle'
 ```
+
+## 私人留言板（可选）
+
+留言板不是公开评论区。访客可以匿名写信，邮件地址只用于站长私下回复；来信先进入私人 GitHub 仓库。只有访客勾选公开许可、站长留下公开版回复并批准后，系统才会向 Hugo 内容仓库提交一份不含邮箱的 PR。
+
+它由三部分组成：
+
+- Cloudflare Worker：验证来源和 Turnstile，接收匿名投递
+- 私人 GitHub Issues：保存原始来信，并通过 GitHub 通知发送收件提醒
+- Hugo 发布器：将已批准的“来信 + 回复”生成为安全转义的静态页面
+
+完整配置、部署、审核和回滚步骤见 [留言板部署指南](docs/guestbook.md)。
 
 ### 本地开发链接
 

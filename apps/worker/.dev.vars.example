@@ -1,0 +1,8 @@
+ALLOWED_ORIGINS="http://localhost:1313,https://www.example.com"
+TURNSTILE_SECRET_KEY="replace-with-turnstile-secret"
+TURNSTILE_EXPECTED_HOSTNAME="www.example.com"
+TURNSTILE_EXPECTED_ACTION="guestbook-submit"
+GITHUB_TOKEN="replace-with-fine-grained-token"
+GITHUB_INBOX_OWNER="github-owner"
+GITHUB_INBOX_REPO="private-inbox-repository"
+GITHUB_ASSIGNEE="github-login"

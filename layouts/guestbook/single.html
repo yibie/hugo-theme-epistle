@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{- $hetiClass := partial "heti-class.html" (dict "heti_font" .Params.heti_font "heti_mode" .Params.heti_mode) -}}
+<article class="letter guestbook guestbook-single {{ $hetiClass }}" id="top">
+  <header class="letter-header">
+    <h1 class="letter-title">{{ .Title }}</h1>
+    <time class="letter-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年1月2日" }}</time>
+  </header>
+
+  {{ with .Params.message }}
+  <p class="guestbook-message">{{ . }}</p>
+  {{ end }}
+
+  {{ with .Params.reply }}
+  <div class="guestbook-reply">
+    <h2>回信</h2>
+    <p>{{ . }}</p>
+  </div>
+  {{ end }}
+
+  <nav class="letter-nav" aria-label="留言导航">
+    <a href="{{ "/guestbook/" | relURL }}" class="letter-nav__link letter-nav__link--next">
+      <span class="letter-nav__label">返回</span>
+      <span class="letter-nav__title">留言簿</span>
+    </a>
+  </nav>
+</article>
+{{ end }}

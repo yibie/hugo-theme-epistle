@@ -25,3 +25,8 @@ disableKinds = ['taxonomy', 'term']
   dappledLight = true
   # 社交分享默认封面图（Telegram / Twitter 预览用）
   # ogImage = 'https://yourdomain.com/images/og-default.jpg'
+
+[params.guestbook]
+  enabled = true
+  endpoint = 'https://example.com/v1/submissions'
+  turnstileSiteKey = '1x00000000000000000000AA'

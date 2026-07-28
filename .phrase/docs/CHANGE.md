@@ -1,5 +1,25 @@
 # Change Index
 
+## phase-cloudflare-guestbook-monorepo-20260728
+- `change001` — `pr_faq_*`：固化留言板产品边界与首版用户流程（task001）
+- `change002` — `spec_*`：定义数据契约、隐私规则和验收标准（task001）
+- `change003` — `plan_*`：建立 monorepo、Worker、Hugo 发布与验证里程碑（task001）
+- `change004` — `tech-refer_*`：记录 Worker 直写私人 Issue 的架构决策（task001）
+- `change005` — `task_*`：拆分 v1 实现与验证任务（task001）
+- `change006` — `package*.json`：建立兼容主题根目录的 npm workspaces 与统一测试入口（task002）
+- `change007` — `apps/worker/src/index.js`：实现 Cloudflare 匿名私人投递入口（task003）
+- `change008` — `apps/worker/test/handler.test.js`：锁定 Worker 边界与单次 Turnstile 重试行为（task004）
+- `change009` — `packages/hugo-publisher`：生成不含邮箱的确定性 Hugo front matter（task005）
+- `change010` — `templates/inbox-workflow`：交付固定发布器 SHA 的私人审核发布模板（task005）
+- `change011` — `layouts/guestbook`、`guestbook-form.html`：加入 Hugo 留言列表、详情与可选表单（task007）
+- `change012` — `static/js/guestbook.js`、`static/css/main.css`：加入原生表单交互与信纸样式（task007）
+- `change013` — `sidebar.html`、`single.html`：将留言页从文章归档和上下篇导航隔离（task006）
+- `change014` — `test/guestbook-flow.test.mjs`、`ci.yml`：增加跨包契约与只读 CI（task009）
+- `change015` — `exampleSite/content/guestbook`：增加不执行匿名 HTML/Markdown 的示例（task006）
+- `change016` — `README.md`、`docs/guestbook.md`：补齐部署、审核、排错和回滚说明（task008）
+- `change017` — `.omx/state/guestbook/ralph-progress.json`：记录 visual-verdict 93 分通过证据（task009）
+- `change018` — `task_*`：回写 task002-task009 完成状态（task009）
+
 ## phase-dappled-light-20260402
 - `change001` — `assets/css/main.css`：新增斑驳树影变量、桌面环境光与纸面光影伪元素（task001）
 - `change002` — `static/css/main.css`：同步静态分发 CSS（task001）

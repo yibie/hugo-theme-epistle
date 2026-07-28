@@ -1,0 +1,9 @@
+name = "epistle-guestbook-worker"
+main = "src/index.js"
+compatibility_date = "2026-07-28"
+
+[vars]
+TURNSTILE_EXPECTED_ACTION = "guestbook-submit"
+# Configure ALLOWED_ORIGINS, TURNSTILE_EXPECTED_HOSTNAME,
+# GITHUB_INBOX_OWNER, GITHUB_INBOX_REPO and GITHUB_ASSIGNEE for your site.
+# Store TURNSTILE_SECRET_KEY and GITHUB_TOKEN with `wrangler secret put`.

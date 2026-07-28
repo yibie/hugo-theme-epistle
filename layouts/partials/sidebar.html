@@ -1,6 +1,8 @@
 <nav class="archive" id="sidebar">
   <h2 class="archive-title">往来书信</h2>
-  {{ range .Site.RegularPages.GroupByDate "2006" }}
+  {{- $mainSections := .Site.Params.mainSections | default (slice "posts") -}}
+  {{- $pages := where .Site.RegularPages "Section" "in" $mainSections -}}
+  {{ range $pages.GroupByDate "2006" }}
   <div class="year-group">
     <button class="year-toggle" aria-expanded="{{ if eq .Key (now.Format "2006") }}true{{ else }}false{{ end }}">
       {{ .Key }}

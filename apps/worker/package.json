@@ -1,0 +1,10 @@
+{
+  "name": "@epistle/guestbook-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --config wrangler.toml",
+    "deploy": "wrangler deploy --config wrangler.toml",
+    "test": "node --test"
+  }
+}

@@ -7,3 +7,8 @@ exampleSite/resources/
 exampleSite/public/
 exampleSite/.hugo_build.lock
 hugo_stats.json
+
+# Guestbook monorepo
+node_modules/
+.wrangler/
+.dev.vars
