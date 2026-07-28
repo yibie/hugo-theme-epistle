@@ -13,7 +13,7 @@
 {{- if isset .Site.Params "dappledlight" -}}
   {{- $dappledEnabled = .Site.Params.dappledLight -}}
 {{- end -}}
-<body data-style="{{ $style }}" data-dappled="{{ if $dappledEnabled }}on{{ else }}off{{ end }}">
+<body data-style="{{ $style }}" data-dappled="{{ if $dappledEnabled }}on{{ else }}off{{ end }}"{{ if eq .Section "guestbook" }} class="page-guestbook"{{ end }}>
   <div class="dappled-layer" aria-hidden="true">
     <div class="dappled-layer__wash"></div>
     <div class="dappled-layer__shadows" id="dappled-shadows"></div>

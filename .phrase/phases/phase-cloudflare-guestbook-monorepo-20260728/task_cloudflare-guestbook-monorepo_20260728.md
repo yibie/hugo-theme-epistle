@@ -19,3 +19,5 @@ task008 [x] 场景:维护者按文档可以配置、部署、排错和回滚系�
 task009 [x] 场景:维护者确认首版可发布且现有主题无回归 | Given:所有实现任务完成 | When:运行测试、静态检查、Hugo 构建与端到端 fixture | Then:全部通过+phase change 索引完整+剩余风险已记录 | 验证:命令输出与变更审阅
 
 task010 [x] 场景:站长将匿名私人投递入口部署到正式博客 | Given:Cloudflare 与 GitHub 已授权+私人 inbox 仓库已创建 | When:配置 Turnstile、Worker Secrets 和正式站点参数并发布 Hugo 产物 | Then:正式留言页返回 200+Worker 健康检查通过+无效验证码不会创建 Issue | 验证:Wrangler Secret 名称检查+线上 HTTP 检查+GitHub Pages build+私人 inbox Issue 检查
+
+task011 [x] 场景:桌面读者读完文章后发现并舒适使用留言入口 | Given:站点已启用 guestbook+读者使用桌面或移动设备 | When:读完文章并打开留言板 | Then:文章末尾出现留言链接+桌面信纸充分利用现有布局宽度+字段间距紧凑+移动端无回归 | 验证:Hugo 产物断言+桌面与移动端截图对比

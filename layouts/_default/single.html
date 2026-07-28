@@ -32,6 +32,17 @@
     {{- end }}
   </footer>
 
+  {{- $mainSections := .Site.Params.mainSections | default (slice "posts") -}}
+  {{- $guestbookEnabled := false -}}
+  {{- with .Site.Params.guestbook -}}
+    {{- $guestbookEnabled = .enabled | default false -}}
+  {{- end -}}
+  {{- if and $guestbookEnabled (in $mainSections .Section) }}
+  <p class="letter-guestbook-cta">
+    读完若有话想说，欢迎到<a href="{{ "guestbook/" | relURL }}#guestbook-form">留言板写一封来信</a>。
+  </p>
+  {{- end }}
+
   <nav class="letter-nav" aria-label="信件导航">
     {{ with .NextInSection }}
     <a href="{{ .Permalink }}" class="letter-nav__link letter-nav__link--next">

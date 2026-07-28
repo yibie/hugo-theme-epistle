@@ -14,6 +14,7 @@
    - `publish` 标签触发 Action，生成 Hugo Markdown PR 或可审阅变更。
 5. **交付 Epistle 展示适配**
    - 加入留言表单 partial、留言板 section 模板、样式与 exampleSite fixture。
+   - 在文章末尾提供留言入口，并让桌面留言表单使用完整信纸宽度与紧凑字段节奏。
 6. **验证与运行配置**
    - 单元/集成测试、Hugo 构建、安全检查、平台凭据检查和可回滚部署。
 
