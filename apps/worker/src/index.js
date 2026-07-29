@@ -2,6 +2,7 @@ const JSON_HEADERS = { "content-type": "application/json; charset=utf-8" };
 const MAX_DISPLAY_NAME = 80;
 const MAX_EMAIL = 254;
 const MAX_MESSAGE = 5000;
+const MAX_SOURCE_PATH = 1024;
 const MAX_REQUEST_BYTES = 16_384;
 const MAX_TURNSTILE_TOKEN = 2048;
 
@@ -67,7 +68,8 @@ async function handleRequest(request, env, deps) {
       email: input.email,
       message: input.message,
       publishConsent: input.publishConsent,
-      sourceUrl: request.headers.get("origin"),
+      sourcePath: input.sourcePath,
+      sourceUrl: new URL(input.sourcePath, request.headers.get("origin")).href,
     };
 
     await createIssue(submission, env, deps.fetch);
@@ -101,6 +103,7 @@ function readSubmissionForm(form) {
   const email = normalizeSingleLine(form.get("email") ?? "");
   const message = normalizeMultiline(form.get("message") ?? "");
   const publishConsent = parseBoolean(form.get("publish_consent") ?? form.get("publishConsent"));
+  const sourcePath = normalizeSourcePath(form.get("source_path") ?? form.get("sourcePath") ?? "/guestbook/");
   const turnstileToken = normalizeSingleLine(form.get("cf-turnstile-response") ?? form.get("turnstileToken") ?? "");
 
   if (displayName.length > MAX_DISPLAY_NAME) throw new HttpError(400);
@@ -109,7 +112,7 @@ function readSubmissionForm(form) {
   if (message.length < 1 || message.length > MAX_MESSAGE) throw new HttpError(400);
   if (!turnstileToken || turnstileToken.length > MAX_TURNSTILE_TOKEN) throw new HttpError(400);
 
-  return { displayName, email, message, publishConsent, turnstileToken };
+  return { displayName, email, message, publishConsent, sourcePath, turnstileToken };
 }
 
 function normalizeMultiline(value) {
@@ -119,6 +122,32 @@ function normalizeMultiline(value) {
 
 function normalizeSingleLine(value) {
   return normalizeMultiline(value).replace(/\s+/g, " ");
+}
+
+function normalizeSourcePath(value) {
+  const path = normalizeSingleLine(value);
+  if (
+    !path ||
+    path.length > MAX_SOURCE_PATH ||
+    !path.startsWith("/") ||
+    path.startsWith("//") ||
+    path.includes("\\") ||
+    path.includes("?") ||
+    path.includes("#")
+  ) {
+    throw new HttpError(400);
+  }
+
+  let parsed;
+  try {
+    parsed = new URL(path, "https://epistle.invalid");
+  } catch {
+    throw new HttpError(400);
+  }
+  if (parsed.origin !== "https://epistle.invalid" || parsed.pathname !== path) {
+    throw new HttpError(400);
+  }
+  return path;
 }
 
 function parseBoolean(value) {

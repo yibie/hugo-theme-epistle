@@ -9,7 +9,10 @@
     {{ end }}
   </header>
 
-  {{ partial "guestbook-form.html" . }}
+  <section class="guestbook-compose" aria-labelledby="guestbook-form-title">
+    <h2 id="guestbook-form-title">写信</h2>
+    {{ partial "guestbook-form.html" . }}
+  </section>
 
   <section class="guestbook-entries" aria-labelledby="guestbook-entries-title">
     <h2 id="guestbook-entries-title">来信</h2>

@@ -53,7 +53,8 @@ describe("guestbook worker", () => {
       email: "a@example.com",
       message: "hello ```\n<!-- x -->",
       publishConsent: false,
-      sourceUrl: "https://example.com",
+      sourcePath: "/posts/example/",
+      sourceUrl: "https://example.com/posts/example/",
     });
   });
 
@@ -86,6 +87,32 @@ describe("guestbook worker", () => {
 
     assert.equal(response.status, 400);
     assert.equal(calls.length, 0);
+  });
+
+  it("rejects a source path outside the current site", async () => {
+    let called = false;
+    const handler = createHandler({
+      fetch: async () => {
+        called = true;
+        return Response.json({});
+      },
+    });
+
+    const invalidPaths = [
+      "https://evil.example/posts/stolen/",
+      "//evil.example/posts/stolen/",
+      "/posts/../admin/",
+      "/posts/%2e%2e/admin/",
+      "/posts/example/?preview=true",
+    ];
+    for (const sourcePath of invalidPaths) {
+      const response = await handler.fetch(
+        request(formData({ message: "hello", source_path: sourcePath })),
+        ENV,
+      );
+      assert.equal(response.status, 400);
+    }
+    assert.equal(called, false);
   });
 
   it("rejects request bodies before parsing when they exceed the limit", async () => {
@@ -186,6 +213,7 @@ function formData(overrides = {}) {
   if (overrides.display_name !== undefined) data.set("display_name", overrides.display_name);
   if (overrides.email !== undefined) data.set("email", overrides.email);
   data.set("message", overrides.message ?? "hello");
+  data.set("source_path", overrides.source_path ?? "/posts/example/");
   if (overrides.publish_consent !== undefined) data.set("publish_consent", overrides.publish_consent);
   data.set("cf-turnstile-response", overrides.token ?? "turnstile-token");
   return data;

@@ -35,6 +35,8 @@
     {{- end }}
   </footer>
 
+  {{ partial "correspondence.html" . }}
+
   <nav class="letter-nav" aria-label="信件导航">
     {{ with index $pages 1 }}
     <a href="{{ .Permalink }}" class="letter-nav__link letter-nav__link--next">

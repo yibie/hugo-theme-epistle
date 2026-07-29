@@ -1,6 +1,10 @@
 # Change Index
 
 ## phase-cloudflare-guestbook-monorepo-20260728
+- `change027` — `task_*`、`ralph-progress.json`：记录全量测试、真实博客构建及 99 分视觉验收（task012）
+- `change026` — Hugo 模板、CSS、示例、README 与截图：交付定稿的文章内往来界面（task012）
+- `change025` — Worker、发布器与测试：贯通并验证 `sourcePath` 文章归属（task012）
+- `change024` — `spec_*`、`plan_*`、`tech-refer_*`、`task_*`：锁定按文章归属的连续信纸往来与 `sourcePath` 契约（task012）
 - `change001` — `pr_faq_*`：固化留言板产品边界与首版用户流程（task001）
 - `change002` — `spec_*`：定义数据契约、隐私规则和验收标准（task001）
 - `change003` — `plan_*`：建立 monorepo、Worker、Hugo 发布与验证里程碑（task001）

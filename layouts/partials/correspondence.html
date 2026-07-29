@@ -1,0 +1,44 @@
+{{- $enabled := false -}}
+{{- with .Site.Params.guestbook -}}
+  {{- $enabled = .enabled | default false -}}
+{{- end -}}
+{{- if $enabled -}}
+  {{- $guestbookEntries := where .Site.RegularPages "Section" "guestbook" -}}
+  {{- $entries := where $guestbookEntries.ByDate.Reverse "Params.source_path" .RelPermalink -}}
+<section class="correspondence" id="correspondence" aria-label="往来">
+  {{ if $entries }}
+  <details class="correspondence-compose">
+    <summary>往来</summary>
+    {{ partial "guestbook-form.html" . }}
+  </details>
+  <ol class="guestbook-list">
+    {{ range $entries }}
+    <li class="guestbook-entry">
+      <article>
+        <p class="guestbook-entry__meta">
+          {{ .Params.display_name | default "匿名读者" }} ·
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "1月2日" }}</time>
+        </p>
+        {{ with .Params.message }}
+        <p class="guestbook-message">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.reply }}
+        <div class="guestbook-reply">
+          <span>回信</span>
+          <p>{{ . }}</p>
+        </div>
+        {{ end }}
+      </article>
+    </li>
+    {{ end }}
+  </ol>
+  {{ else }}
+  <header class="correspondence-header">
+    <h2>往来</h2>
+  </header>
+  <p class="correspondence-empty">这封信还没有回音。你可以写下第一封来信。</p>
+  {{ partial "guestbook-form.html" . }}
+  {{ end }}
+</section>
+<script src="{{ "js/guestbook.js" | relURL }}?v={{ now.Unix }}"></script>
+{{- end -}}

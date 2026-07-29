@@ -1,6 +1,7 @@
 const MARKER_PATTERN = /<!-- epistle-guestbook:v1:([A-Za-z0-9_-]+) -->/;
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const UNSAFE_CONTROL_PATTERN = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/;
+const MAX_SOURCE_PATH = 1024;
 
 function assertText(value, name, maxLength, { optional = false } = {}) {
   if (typeof value !== 'string') {
@@ -71,6 +72,26 @@ function assertIsoDate(value, name) {
   return new Date(value).toISOString();
 }
 
+function assertSourcePath(value) {
+  if (value === undefined || value === null || value === '') return '';
+  const path = assertText(value, 'sourcePath', MAX_SOURCE_PATH);
+  if (
+    !path.startsWith('/') ||
+    path.startsWith('//') ||
+    path.includes('\\') ||
+    path.includes('?') ||
+    path.includes('#')
+  ) {
+    throw new Error('sourcePath must be a site-relative absolute path');
+  }
+
+  const parsed = new URL(path, 'https://epistle.invalid');
+  if (parsed.origin !== 'https://epistle.invalid' || parsed.pathname !== path) {
+    throw new Error('sourcePath must be a normalized site-relative path');
+  }
+  return path;
+}
+
 function yamlString(value) {
   return JSON.stringify(value);
 }
@@ -115,6 +136,7 @@ export function parseSubmission(issueBody) {
     submittedAt: assertIsoDate(submission.submittedAt, 'submittedAt'),
     displayName: assertText(submission.displayName || '匿名读者', 'displayName', 80),
     message: assertText(submission.message, 'message', 5000),
+    sourcePath: assertSourcePath(submission.sourcePath),
   };
 }
 
@@ -149,6 +171,7 @@ export function renderHugoMarkdown(letter) {
     'draft: false',
     `submission_id: ${yamlString(letter.submissionId)}`,
     `display_name: ${yamlString(letter.displayName)}`,
+    `source_path: ${yamlString(letter.sourcePath)}`,
     'message: |-',
     yamlBlock(letter.message),
     'reply: |-',

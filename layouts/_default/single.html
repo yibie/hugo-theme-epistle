@@ -33,26 +33,20 @@
   </footer>
 
   {{- $mainSections := .Site.Params.mainSections | default (slice "posts") -}}
-  {{- $guestbookEnabled := false -}}
-  {{- with .Site.Params.guestbook -}}
-    {{- $guestbookEnabled = .enabled | default false -}}
-  {{- end -}}
-  {{- if and $guestbookEnabled (in $mainSections .Section) }}
-  <p class="letter-guestbook-cta">
-    读完若有话想说，欢迎到<a href="{{ "guestbook/" | relURL }}#guestbook-form">留言板写一封来信</a>。
-  </p>
+  {{- if in $mainSections .Section }}
+  {{ partial "correspondence.html" . }}
   {{- end }}
 
   <nav class="letter-nav" aria-label="信件导航">
-    {{ with .NextInSection }}
-    <a href="{{ .Permalink }}" class="letter-nav__link letter-nav__link--next">
-      <span class="letter-nav__label">下一封</span>
-      <span class="letter-nav__title">{{ .Title }}</span>
-    </a>
-    {{ end }}
     {{ with .PrevInSection }}
     <a href="{{ .Permalink }}" class="letter-nav__link letter-nav__link--prev">
       <span class="letter-nav__label">上一封</span>
+      <span class="letter-nav__title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a href="{{ .Permalink }}" class="letter-nav__link letter-nav__link--next">
+      <span class="letter-nav__label">下一封</span>
       <span class="letter-nav__title">{{ .Title }}</span>
     </a>
     {{ end }}

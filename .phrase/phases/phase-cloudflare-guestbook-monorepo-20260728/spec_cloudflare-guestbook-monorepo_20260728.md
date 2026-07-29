@@ -13,6 +13,7 @@
 - `publish` 标签只在许可与回信齐全时触发 Hugo 内容生成。
 - 首版发布器支持 Hugo，同时把批准数据格式稳定为版本化契约。
 - 不把邮箱、IP、验证码或内部 Issue 信息写入公开内容。
+- 每篇文章在正文后直接展示属于该文的公开往来，并由「往来」按钮展开写信表单。
 
 ### Non-goals
 - 不提供公开评论线程或访客身份系统。
@@ -44,8 +45,9 @@
 - 失败：缺少许可、回信或数据格式不合法时 Action 失败并在 Issue 中给出可修复原因，不创建内容。
 
 ### Flow 5：读者浏览公开往来
-- 操作：访问 Hugo 留言板 section 或单封往来。
-- 反馈：页面展示来信与站长回信，不显示邮箱和内部元数据；无公开往来时显示合适的空状态。
+- 操作：阅读文章后继续查看同一张信纸下半区的公开往来，或点击「往来」展开写信表单。
+- 反馈：页面直接展示归属于当前文章的来信与站长回信，不显示邮箱和内部元数据；无公开往来时直接展示写信表单。
+- 继续阅读：上一封与下一封位于整个往来区域下方，分别靠左与靠右。
 
 ## Data Contract
 
@@ -57,7 +59,8 @@
 - `email`: 可选，仅私人收件使用
 - `message`: 必填，规范化后 1–5000 字符
 - `publishConsent`: 必填布尔值，默认 `false`
-- `sourceUrl`: 由 Worker 根据允许来源确认，不信任客户端任意值
+- `sourcePath`: 由表单提交、Worker 严格校验的站内绝对路径
+- `sourceUrl`: 由 Worker 将已允许的 origin 与 `sourcePath` 组合，不信任客户端任意 URL
 
 ### Approved Letter v1
 - `schemaVersion`: 固定为 `1`
@@ -67,6 +70,7 @@
 - `displayName`
 - `message`
 - `reply`
+- `sourcePath`
 - 明确禁止：`email`、IP、Turnstile token、GitHub token、Issue 内部 URL
 - `message` 与 `reply` 只保存为 front matter 字符串，由专用 Hugo 模板按纯文本 HTML 上下文渲染；禁止进入 `.Content`、`markdownify` 或 `safeHTML`
 
@@ -80,6 +84,7 @@
 - 已发布 Issue 再次添加标签，不能生成重复文件。
 - 发布器面对相同 `submissionId` 必须得到稳定路径。
 - Worker CORS 只允许配置的博客 origin。
+- `sourcePath` 含 scheme、host、查询、fragment、反斜线或路径穿越。
 
 ## Acceptance Criteria
 - `npm test` 覆盖 Worker 的成功、校验失败、许可默认值、GitHub 错误与重复请求保护。
@@ -89,6 +94,9 @@
 - 合法 fixture 能生成确定性的 Hugo Markdown，且不含邮箱与内部字段。
 - 恶意 HTML、shortcode 与 Markdown 链接在 Hugo 产物中只显示为文本，不执行、不展开。
 - `hugo --source exampleSite --themesDir ../.. --destination <tmp>` 构建通过，留言板列表与详情页存在。
+- Hugo 文章页与首页只展示 `source_path` 等于当前文章 `.RelPermalink` 的公开往来。
+- 有公开往来时直接显示内容，「往来」是唯一写信按钮；无公开往来时表单直接显示。
+- 上一封与下一封渲染在往来之后，上一封靠左、下一封靠右。
 - 当前主题的既有首页、文章页、CSS 与 JS 路径保持兼容。
 - README 包含部署、Secrets、权限、回滚和 Hugo 接入说明。
 

@@ -15,6 +15,7 @@
 5. **交付 Epistle 展示适配**
    - 加入留言表单 partial、留言板 section 模板、样式与 exampleSite fixture。
    - 在文章末尾提供留言入口，并让桌面留言表单使用完整信纸宽度与紧凑字段节奏。
+   - 将定稿后的「连续信纸」往来嵌入文章和首页：公开往来直接展示，「往来」只展开表单，相邻信件导航位于往来之后。
 6. **验证与运行配置**
    - 单元/集成测试、Hugo 构建、安全检查、平台凭据检查和可回滚部署。
 
@@ -27,6 +28,7 @@
 - `.github/workflows/`：当前 monorepo CI。
 - `templates/`：复制到私人 inbox 仓库的发布工作流模板；不伪装成当前公共仓库可直接接收私人 Issue。
 - Hugo 根目录的表单 partial、guestbook section 模板、静态样式/脚本和 exampleSite 内容。
+- Worker 与 Hugo 发布器的 `sourcePath` 兼容扩展，用于按文章归属公开往来。
 - README、部署说明和 `.phrase` 闭环文档。
 
 ### Out of Scope

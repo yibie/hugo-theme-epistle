@@ -7,48 +7,48 @@
   {{- $endpoint = .endpoint -}}
   {{- $siteKey = .turnstileSiteKey -}}
 {{- end -}}
-<section class="guestbook-compose" id="guestbook-form" aria-labelledby="guestbook-form-title">
-  <h2 id="guestbook-form-title">写信</h2>
-  {{ if and $enabled $endpoint $siteKey }}
-  <form class="guestbook-form" action="{{ $endpoint }}" method="post" data-guestbook-form data-status-id="guestbook-form-status">
+{{ if and $enabled $endpoint $siteKey }}
+<form class="guestbook-form" id="guestbook-form" action="{{ $endpoint }}" method="post" data-guestbook-form data-status-id="guestbook-form-status">
+  <input type="hidden" name="source_path" value="{{ .RelPermalink }}">
+  <div class="guestbook-form__identity">
     <div class="guestbook-field">
       <label for="guestbook-name">称呼</label>
-      <input id="guestbook-name" name="display_name" autocomplete="name" maxlength="80" aria-describedby="guestbook-name-help guestbook-name-error">
-      <p class="guestbook-help" id="guestbook-name-help">可不填，公开时会显示为“匿名读者”。</p>
+      <input id="guestbook-name" name="display_name" autocomplete="name" maxlength="80" placeholder="匿名读者" aria-describedby="guestbook-name-error">
       <p class="guestbook-error" id="guestbook-name-error"></p>
     </div>
 
     <div class="guestbook-field">
       <label for="guestbook-email">邮箱</label>
-      <input id="guestbook-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="guestbook-email-help guestbook-email-error">
-      <p class="guestbook-help" id="guestbook-email-help">可不填，只用于回信。</p>
+      <input id="guestbook-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="仅用于回信" aria-describedby="guestbook-email-error">
       <p class="guestbook-error" id="guestbook-email-error"></p>
     </div>
+  </div>
 
-    <div class="guestbook-field">
-      <label for="guestbook-message">留言</label>
-      <textarea id="guestbook-message" name="message" required minlength="1" maxlength="5000" rows="7" aria-describedby="guestbook-message-error"></textarea>
-      <p class="guestbook-error" id="guestbook-message-error"></p>
-    </div>
+  <div class="guestbook-field">
+    <label for="guestbook-message">写下你的来信</label>
+    <textarea id="guestbook-message" name="message" required minlength="1" maxlength="5000" rows="6" placeholder="关于这封信，你想说些什么？" aria-describedby="guestbook-message-error"></textarea>
+    <p class="guestbook-error" id="guestbook-message-error"></p>
+  </div>
 
-    <div class="guestbook-field guestbook-field--consent">
-      <label for="guestbook-consent">
-        <input id="guestbook-consent" name="publish_consent" type="checkbox">
-        允许站长隐去邮箱后，以所填称呼摘录这封来信和回信
-      </label>
-      <p class="guestbook-help">不勾选也可以寄出；来信将一直保留在私人收件箱。</p>
-    </div>
+  <div class="guestbook-field guestbook-field--consent">
+    <label for="guestbook-consent">
+      <input id="guestbook-consent" name="publish_consent" type="checkbox">
+      允许隐去邮箱后，摘录这封来信与作者回信
+    </label>
+    <p class="guestbook-help">不勾选也可以寄出；来信将留在私人收件箱。</p>
+  </div>
 
-    <div class="guestbook-field guestbook-field--turnstile">
-      <div class="cf-turnstile" data-sitekey="{{ $siteKey }}" data-action="guestbook-submit"></div>
-      <p class="guestbook-error" id="guestbook-turnstile-error"></p>
-    </div>
+  <div class="guestbook-field guestbook-field--turnstile">
+    <div class="cf-turnstile" data-sitekey="{{ $siteKey }}" data-action="guestbook-submit"></div>
+    <p class="guestbook-error" id="guestbook-turnstile-error"></p>
+  </div>
 
-    <button class="guestbook-submit" type="submit">寄出</button>
+  <div class="guestbook-form__footer">
+    <button class="guestbook-submit" type="submit">寄出这封信</button>
     <p class="guestbook-status" id="guestbook-form-status" role="status" aria-live="polite"></p>
-  </form>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  {{ else }}
-  <p class="guestbook-unavailable">留言表单尚未启用。请在站点配置中添加 <code>[params.guestbook]</code>，并设置 <code>enabled</code>、<code>endpoint</code> 和 <code>turnstileSiteKey</code>。</p>
-  {{ end }}
-</section>
+  </div>
+</form>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{{ else }}
+<p class="guestbook-unavailable">留言表单尚未启用。请在站点配置中添加 <code>[params.guestbook]</code>，并设置 <code>enabled</code>、<code>endpoint</code> 和 <code>turnstileSiteKey</code>。</p>
+{{ end }}

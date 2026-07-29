@@ -31,6 +31,7 @@ test('moves an approved private submission from Worker issue to public Hugo data
   form.set('email', 'private@example.com');
   form.set('message', '<script>alert(1)</script>\n{{< unsafe >}}');
   form.set('publish_consent', 'on');
+  form.set('source_path', '/posts/about-that-afternoon/');
   form.set('cf-turnstile-response', 'valid-token');
 
   const response = await handler.fetch(
@@ -76,5 +77,6 @@ test('moves an approved private submission from Worker issue to public Hugo data
 
   assert.match(markdown, /  <script>alert\(1\)<\/script>/);
   assert.match(markdown, /  \{\{< unsafe >\}\}/);
+  assert.match(markdown, /source_path: "\/posts\/about-that-afternoon\/"/);
   assert.doesNotMatch(markdown, /private@example\.com/);
 });

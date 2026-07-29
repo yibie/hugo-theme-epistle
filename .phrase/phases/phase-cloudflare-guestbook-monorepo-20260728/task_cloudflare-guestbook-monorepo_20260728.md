@@ -21,3 +21,5 @@ task009 [x] 场景:维护者确认首版可发布且现有主题无回归 | Give
 task010 [x] 场景:站长将匿名私人投递入口部署到正式博客 | Given:Cloudflare 与 GitHub 已授权+私人 inbox 仓库已创建 | When:配置 Turnstile、Worker Secrets 和正式站点参数并发布 Hugo 产物 | Then:正式留言页返回 200+Worker 健康检查通过+无效验证码不会创建 Issue | 验证:Wrangler Secret 名称检查+线上 HTTP 检查+GitHub Pages build+私人 inbox Issue 检查
 
 task011 [x] 场景:桌面读者读完文章后发现并舒适使用留言入口 | Given:站点已启用 guestbook+读者使用桌面或移动设备 | When:读完文章并打开留言板 | Then:文章末尾出现留言链接+桌面信纸充分利用现有布局宽度+字段间距紧凑+移动端无回归 | 验证:Hugo 产物断言+桌面与移动端截图对比
+
+task012 [x] 场景:读者在一封文章下直接阅读并参与该文往来 | Given:站点启用 guestbook+公开来信带有经过校验的 sourcePath | When:访问文章页或展示最新全文的首页 | Then:只显示属于当前文章的公开往来+往来按钮展开唯一写信表单+空状态直接显示表单+上一封在往来下方左侧+下一封在右侧 | 验证:Worker与发布器契约测试+Hugo产物断言+桌面与移动端截图

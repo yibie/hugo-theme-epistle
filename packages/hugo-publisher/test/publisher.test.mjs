@@ -15,6 +15,7 @@ const submission = {
   email: 'private@example.com',
   message: '<script>alert(1)</script>\n{{< unsafe >}}\n---',
   publishConsent: true,
+  sourcePath: '/posts/about-that-afternoon/',
   sourceUrl: 'https://example.com/guestbook/',
 };
 
@@ -48,6 +49,7 @@ test('parses a versioned private submission marker', () => {
     submittedAt: submission.submittedAt,
     displayName: submission.displayName,
     message: submission.message,
+    sourcePath: submission.sourcePath,
   });
 });
 
@@ -59,8 +61,26 @@ test('builds deterministic Hugo front matter without private email', () => {
   assert.match(markdown, /message: \|-/);
   assert.match(markdown, /  <script>alert\(1\)<\/script>/);
   assert.match(markdown, /reply: \|-/);
+  assert.match(markdown, /source_path: "\/posts\/about-that-afternoon\/"/);
   assert.doesNotMatch(markdown, /private@example\.com/);
   assert.equal(markdown.endsWith('---\n'), true);
+});
+
+test('keeps legacy v1 submissions publishable without an article source', () => {
+  const { sourcePath, ...legacySubmission } = submission;
+  const parsed = parseSubmission(marker(legacySubmission));
+
+  assert.equal(sourcePath, '/posts/about-that-afternoon/');
+  assert.equal(parsed.sourcePath, '');
+});
+
+test('rejects an untrusted issue marker with a non-site source path', () => {
+  const invalidSubmission = { ...submission, sourcePath: '/posts/../admin/' };
+
+  assert.throws(
+    () => parseSubmission(marker(invalidSubmission)),
+    /sourcePath must be a normalized site-relative path/,
+  );
 });
 
 test('rejects publication without explicit consent', () => {

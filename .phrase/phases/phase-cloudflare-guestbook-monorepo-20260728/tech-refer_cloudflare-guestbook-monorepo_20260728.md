@@ -34,9 +34,9 @@
 1. 接受 `POST`，拒绝其他方法。
 2. 检查 `Origin` 精确匹配 allowlist。
 3. 读取并限制请求大小，再解析 JSON 或 form data。
-4. 规范化称呼、邮箱、正文和许可值。
+4. 规范化称呼、邮箱、正文和许可值，并校验 `sourcePath` 是不含查询、fragment 或路径穿越的站内绝对路径。
 5. 服务端调用 Turnstile Siteverify，并验证 `success`、`hostname`、`action`。
-6. 生成 `submissionId` 和结构化 Issue body。
+6. 生成 `submissionId`，用已允许 origin 与 `sourcePath` 生成 `sourceUrl`，再写入结构化 Issue body。
 7. 调用 GitHub Create Issue API，目标固定为环境配置的私人仓库。
 8. 返回通用成功/失败响应，不向客户端暴露 GitHub 细节。
 
@@ -45,7 +45,7 @@
 2. 精确匹配 `publish` 标签，并从私人 Issue 获取来信与站长公开回复。
 3. 解析为 `Approved Letter v1`，再次确认 `publishConsent === true`。
 4. Hugo 发布器以 `submissionId` 生成稳定文件路径。
-5. 生成内容只包含公开白名单字段，匿名正文只进入 front matter 字符串。
+5. 生成内容只包含公开白名单字段，匿名正文只进入 front matter 字符串，并以 `source_path` 保留文章归属。
 6. 专用 Hugo 模板按纯文本渲染，禁止 `.Content`、`markdownify` 和 `safeHTML`。
 7. 创建可审阅变更；重复触发应更新同一路径或安全退出。
 
@@ -86,4 +86,5 @@
 - **公开隐私字段**：发布器只组装白名单对象，并用测试断言邮箱不出现。
 - **脚本/shortcode 注入**：匿名正文不进入 Markdown body；Hugo 模板只做自动转义的文本输出。
 - **Issue 格式漂移**：版本化 marker + 严格解析，未知版本拒绝发布。
+- **伪造文章归属**：`sourcePath` 是访客声明的站内路径；Worker 与发布器负责拒绝外站、查询、fragment 和路径穿越，但不能证明浏览器实际停留的文章。该字段只用于内容筛选、不参与文件路径拼接，站长批准公开前仍需核对来源文章。
 - **未来适配诱发过度抽象**：第二个发布器出现前不新增注册机制。
