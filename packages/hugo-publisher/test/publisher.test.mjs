@@ -67,12 +67,12 @@ test('builds deterministic Hugo front matter without private email', () => {
   assert.equal(markdown.endsWith('---\n'), true);
 });
 
-test('publishes an approved comment without an author reply', () => {
+test('keeps an approved comment stable without an author reply', () => {
   const letter = approvedLetterFromIssue(event(), [], 'owner');
   const markdown = renderHugoMarkdown(letter);
 
   assert.equal(letter.reply, '');
-  assert.equal(letter.publishedAt, '2026-07-28T09:30:00.000Z');
+  assert.equal(letter.publishedAt, submission.submittedAt);
   assert.doesNotMatch(markdown, /^reply:/m);
   assert.doesNotMatch(markdown, /private@example\.com/);
 });

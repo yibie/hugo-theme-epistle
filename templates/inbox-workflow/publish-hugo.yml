@@ -5,8 +5,9 @@ on:
     types: [labeled]
 
 permissions:
-  contents: read
+  contents: write
   issues: write
+  pull-requests: write
 
 jobs:
   publish:
@@ -34,16 +35,13 @@ jobs:
           fi
 
       - name: Checkout Hugo source
-        uses: actions/checkout@v4
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          repository: ${{ vars.BLOG_REPOSITORY }}
-          token: ${{ secrets.BLOG_PUBLISH_TOKEN }}
           ref: ${{ vars.BLOG_BASE_BRANCH || 'main' }}
           path: blog
-          persist-credentials: false
 
       - name: Checkout Epistle guestbook publisher
-        uses: actions/checkout@v4
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           repository: yibie/hugo-theme-epistle
           ref: ${{ vars.GUESTBOOK_SYSTEM_REF }}
@@ -82,8 +80,7 @@ jobs:
       - name: Create or update publication pull request
         working-directory: blog
         env:
-          GH_TOKEN: ${{ secrets.BLOG_PUBLISH_TOKEN }}
-          BLOG_REPOSITORY: ${{ vars.BLOG_REPOSITORY }}
+          GH_TOKEN: ${{ github.token }}
           BLOG_BASE_BRANCH: ${{ vars.BLOG_BASE_BRANCH }}
           GUESTBOOK_CONTENT_DIR: ${{ vars.GUESTBOOK_CONTENT_DIR }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
@@ -101,9 +98,9 @@ jobs:
           git commit -m "Publish approved guestbook letter #${ISSUE_NUMBER}"
           gh auth setup-git
           git push --force origin "$branch"
-          if [ "$(gh pr list --repo "$BLOG_REPOSITORY" --head "$branch" --state open --json number --jq length)" = "0" ]; then
+          if [ "$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$branch" --state open --json number --jq length)" = "0" ]; then
             gh pr create \
-              --repo "$BLOG_REPOSITORY" \
+              --repo "$GITHUB_REPOSITORY" \
               --base "$base" \
               --head "$branch" \
               --title "Publish approved guestbook letter #${ISSUE_NUMBER}" \

@@ -153,8 +153,7 @@ export function approvedLetterFromIssue(event, comments, maintainers) {
 
   return {
     ...submission,
-    publishedAt: reply?.createdAt
-      ?? assertIsoDate(event.issue.updated_at ?? submission.submittedAt, 'issue updated_at'),
+    publishedAt: reply?.createdAt ?? submission.submittedAt,
     reply: reply?.body ?? '',
   };
 }

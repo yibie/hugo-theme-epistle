@@ -19,6 +19,9 @@
    - 以显著公开提示替代许可复选框，并允许站长在没有公开回信时只发布访客来信。
 6. **验证与运行配置**
    - 单元/集成测试、Hugo 构建、安全检查、平台凭据检查和可回滚部署。
+7. **收敛生产仓库**
+   - 现有私人 inbox 同时保存生产 Hugo 源码。
+   - `publish` 标签在同仓库创建内容 PR，合并后以专用 Deploy Key 更新公开静态仓库。
 
 ## Scope
 
@@ -31,12 +34,13 @@
 - Hugo 根目录的表单 partial、guestbook section 模板、静态样式/脚本和 exampleSite 内容。
 - Worker 与 Hugo 发布器的 `sourcePath` 兼容扩展，用于按文章归属公开往来。
 - README、部署说明和 `.phrase` 闭环文档。
+- 当前生产博客所需的 Hugo 配置、文章、覆盖模板和静态资源迁移到私人 inbox 仓库。
 
 ### Out of Scope
 - Cloudflare 之外的运行时。
 - WordPress、Jekyll、Astro 等发布器。
 - 管理后台、数据库、附件、富文本编辑器。
-- 现有用户博客源码仓库迁移与历史内容导入。
+- 与生产构建无关的历史内容归档、本地虚拟环境和旧发布脚本。
 
 ## Priorities
 1. **P0：匿名入口不暴露 GitHub 或 Turnstile Secret**
@@ -49,7 +53,7 @@
 ## Risks & Dependencies
 - 依赖 Cloudflare Worker、Turnstile 与 GitHub API 的可用性。
 - Worker 需要最小权限、仅作用于私人 inbox 仓库的凭据。
-- 当前博客源码未进入 Git；真正自动发布前需要单独完成源码仓库化。
+- 私人仓库需要允许 Actions 创建 PR；公开站点仓库只授予一把可写 Deploy Key。
 - GitHub Issue 文本是外部输入，Action 必须按不可信数据处理，禁止直接拼接 shell。
 - 示例站允许 raw HTML，匿名正文禁止经过 Hugo `.Content` 或 Markdown 渲染。
 - Cloudflare/GitHub 账户配置与 Secret 可能无法在本地自动完成；代码必须支持可重复部署与明确手动步骤。

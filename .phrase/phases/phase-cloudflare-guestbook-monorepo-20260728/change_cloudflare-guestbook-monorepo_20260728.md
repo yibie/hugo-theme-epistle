@@ -1,5 +1,8 @@
 # Change Log — Phase: cloudflare-guestbook-monorepo-20260728
 
+change035 日期:2026-07-29 | 文件:/Users/chenyibin/Documents/blog,.github/workflows/publish-hugo.yml,.github/workflows/deploy.yml | 操作:Add | 影响:生产源码与自动部署 | 说明:将生产 Hugo 源码迁入现有私人 inbox，并用同仓库审核 PR 与公开仓库专用 Deploy Key 完成首次自动部署 | 关联:task015
+change034 日期:2026-07-29 | 文件:packages/hugo-publisher/src/index.mjs,packages/hugo-publisher/test/publisher.test.mjs | 操作:Modify | 影响:重复批准的幂等性 | 说明:无作者回复时用稳定投递时间作为 lastmod，避免 Issue 元数据变化制造空 PR | 关联:task015
+change033 日期:2026-07-29 | 文件:templates/inbox-workflow/publish-hugo.yml,templates/inbox-workflow/README.md,README.md,test/guestbook-flow.test.mjs,spec_*,plan_*,tech-refer_*,task_* | 操作:Modify | 影响:私人收件箱拓扑与发布权限 | 说明:收敛为 Issues 与 Hugo 源码同仓库并移除跨仓库发布 PAT | 关联:task015
 change032 日期:2026-07-29 | 文件:.phrase/phases/phase-cloudflare-guestbook-monorepo-20260728/task_cloudflare-guestbook-monorepo_20260728.md,.omx/state/guestbook/ralph-progress.json | 操作:Modify | 影响:任务闭环与视觉验收 | 说明:计算样式确认末条往来无底边框、导航保留唯一 1px 顶边框并通过截图验收 | 关联:task014
 change031 日期:2026-07-29 | 文件:static/css/main.css,.phrase/phases/phase-cloudflare-guestbook-monorepo-20260728/task_cloudflare-guestbook-monorepo_20260728.md | 操作:Modify | 影响:往来与信件导航分隔 | 说明:最后一条往来不再画底边框，避免与导航顶边框形成双横线 | 关联:task014
 change030 日期:2026-07-29 | 文件:.phrase/phases/phase-cloudflare-guestbook-monorepo-20260728/task_cloudflare-guestbook-monorepo_20260728.md,.omx/state/guestbook/ralph-progress.json,/Users/chenyibin/Documents/blog/content/guestbook/5c18fc62-248c-4191-8ce9-e99382aeaa21.md | 操作:Modify | 影响:首封无回复往来上线与任务闭环 | 说明:生成不含邮箱和空回信的 Hugo 内容并通过 Pages 线上验证 | 关联:task013

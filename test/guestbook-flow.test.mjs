@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { createHandler } from '../apps/worker/src/index.js';
 import {
@@ -74,4 +75,17 @@ test('moves an approved submission from Worker issue to public Hugo data without
   assert.match(markdown, /source_path: "\/posts\/about-that-afternoon\/"/);
   assert.doesNotMatch(markdown, /^reply:/m);
   assert.doesNotMatch(markdown, /private@example\.com/);
+});
+
+test('publishes approved letters into the private inbox repository itself', async () => {
+  const workflow = await readFile(
+    new URL('../templates/inbox-workflow/publish-hugo.yml', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(workflow, /contents: write/);
+  assert.match(workflow, /pull-requests: write/);
+  assert.match(workflow, /GH_TOKEN: \$\{\{ github\.token \}\}/);
+  assert.match(workflow, /--repo "\$GITHUB_REPOSITORY"/);
+  assert.doesNotMatch(workflow, /BLOG_PUBLISH_TOKEN|BLOG_REPOSITORY/);
 });

@@ -14,6 +14,9 @@
 ### Option D — 首版建立通用插件 SDK
 **拒绝。** 当前只有 Hugo 一个真实消费者。只稳定批准数据 schema 与 CLI 输入，等第二个发布器出现再提取接口。
 
+### Option E — 私人 Issues 与 Hugo 源码拆成两个仓库
+**拒绝。** 当前只有一个站点和一个维护者，拆分会额外引入跨仓库 PAT、变量和失败点。现有私人 inbox 同时保存 Hugo 源码，公开仓库只保留构建产物。
+
 ## Proposed Approach
 
 ### Monorepo layout
@@ -47,7 +50,8 @@
 4. Hugo 发布器以 `submissionId` 生成稳定文件路径。
 5. 生成内容只包含公开白名单字段，匿名正文只进入 front matter 字符串，并以 `source_path` 保留文章归属。
 6. 专用 Hugo 模板按纯文本渲染，禁止 `.Content`、`markdownify` 和 `safeHTML`。
-7. 创建可审阅变更；重复触发应更新同一路径或安全退出。
+7. 使用仓库自身的短期 `GITHUB_TOKEN` 在同一私人仓库创建可审阅 PR；无回复时以投递时间、回复时以回复时间作为稳定 `lastmod`，重复触发安全退出。
+8. 人工合并后构建 Hugo，并用只对公开站点仓库有效的 Deploy Key 推送静态产物。
 
 ## Interfaces & APIs
 
@@ -75,9 +79,10 @@
 - 浏览器、表单字段、Origin、Issue body、Issue comments 全部是不可信输入。
 - Turnstile Secret 与 GitHub Token 只存在于 Worker Secret。
 - Actions Secrets 只存在于私人 inbox / 发布仓库环境。
+- Worker 的 GitHub Token 只有 Issues 权限；Actions 的 Deploy Key 只有公开产物仓库写权限。
 - Shell 不直接插入 Issue 文本；数据通过文件或标准输入传递。
 - Markdown/YAML 必须安全序列化，避免 front matter 注入。
-- 当前公共主题仓库只分发 Worker、发布器和 workflow 模板；真实来信只存在于站长的私人 inbox 仓库。
+- 当前公共主题仓库只分发 Worker、发布器和 workflow 模板；真实来信与 Hugo 源码只存在于站长的私人仓库，公开仓库只接收构建产物。
 
 ## Risks & Mitigations
 - **重复请求**：提交按钮禁用重复点击，并依赖 Turnstile token 的单次验证语义；不为低流量首版引入存储层。
