@@ -10,6 +10,7 @@
 {{ if and $enabled $endpoint $siteKey }}
 <form class="guestbook-form" id="guestbook-form" action="{{ $endpoint }}" method="post" data-guestbook-form data-status-id="guestbook-form-status">
   <input type="hidden" name="source_path" value="{{ .RelPermalink }}">
+  <input type="hidden" name="publish_consent" value="true">
   <div class="guestbook-form__identity">
     <div class="guestbook-field">
       <label for="guestbook-name">称呼</label>
@@ -30,13 +31,7 @@
     <p class="guestbook-error" id="guestbook-message-error"></p>
   </div>
 
-  <div class="guestbook-field guestbook-field--consent">
-    <label for="guestbook-consent">
-      <input id="guestbook-consent" name="publish_consent" type="checkbox">
-      允许隐去邮箱后，摘录这封来信与作者回信
-    </label>
-    <p class="guestbook-help">不勾选也可以寄出；来信将留在私人收件箱。</p>
-  </div>
+  <p class="guestbook-help guestbook-publication-notice">来信有可能被摘录公开；邮箱不会公开。请不要写下你不愿公开的信息。</p>
 
   <div class="guestbook-field guestbook-field--turnstile">
     <div class="cf-turnstile" data-sitekey="{{ $siteKey }}" data-action="guestbook-submit"></div>

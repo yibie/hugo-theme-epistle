@@ -1,6 +1,9 @@
 # Change Index
 
 ## phase-cloudflare-guestbook-monorepo-20260728
+- `change030` — `task_*`、视觉状态与博客来信：首封无回复往来上线并完成验证（task013）
+- `change029` — 表单、Worker、发布器与说明：以公开提示替代复选框并让回信可选（task013）
+- `change028` — `spec_*`、`plan_*`、`task_*` 与测试：锁定提交即知悉和无回复发布契约（task013）
 - `change027` — `task_*`、`ralph-progress.json`：记录全量测试、真实博客构建及 99 分视觉验收（task012）
 - `change026` — Hugo 模板、CSS、示例、README 与截图：交付定稿的文章内往来界面（task012）
 - `change025` — Worker、发布器与测试：贯通并验证 `sourcePath` 文章归属（task012）

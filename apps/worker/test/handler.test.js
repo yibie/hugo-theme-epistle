@@ -28,7 +28,11 @@ describe("guestbook worker", () => {
       now: () => new Date("2026-07-28T00:00:00.000Z"),
     });
 
-    const response = await handler.fetch(request(formData({ message: "hello ```\n<!-- x -->", email: "a@example.com" })), ENV);
+    const response = await handler.fetch(request(formData({
+      message: "hello ```\n<!-- x -->",
+      email: "a@example.com",
+      publish_consent: "true",
+    })), ENV);
 
     assert.equal(response.status, 201);
     assert.equal(response.headers.get("access-control-allow-origin"), "https://example.com");
@@ -41,6 +45,7 @@ describe("guestbook worker", () => {
     assert.deepEqual(issue.labels, ["guestbook", "needs-review"]);
     assert.deepEqual(issue.assignees, ["maintainer"]);
     assert.equal(issue.body.includes("```text"), false);
+    assert.match(issue.body, /Publication notice acknowledged: yes/);
 
     const marker = issue.body.match(/^<!-- epistle-guestbook:v1:([A-Za-z0-9_-]+) -->/);
     assert.ok(marker);
@@ -52,7 +57,7 @@ describe("guestbook worker", () => {
       displayName: "匿名读者",
       email: "a@example.com",
       message: "hello ```\n<!-- x -->",
-      publishConsent: false,
+      publishConsent: true,
       sourcePath: "/posts/example/",
       sourceUrl: "https://example.com/posts/example/",
     });

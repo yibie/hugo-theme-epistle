@@ -216,7 +216,7 @@ function issueBody(submission) {
 
 Display name: <code>${escapeHtml(submission.displayName)}</code>
 Email: <code>${escapeHtml(submission.email || "(none)")}</code>
-Publish consent: ${submission.publishConsent ? "yes" : "no"}
+Publication notice acknowledged: ${submission.publishConsent ? "yes" : "no"}
 Submitted at: ${submission.submittedAt}
 Source: ${submission.sourceUrl}
 

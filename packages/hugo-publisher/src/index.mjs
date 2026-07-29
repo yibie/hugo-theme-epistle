@@ -55,9 +55,7 @@ function replyFrom(comments, maintainers) {
     });
 
   const reply = replies.at(-1);
-  if (!reply) {
-    throw new Error('no /reply comment from an allowed maintainer');
-  }
+  if (!reply) return null;
 
   return {
     body: assertText(reply.body, 'reply', 5000),
@@ -155,15 +153,16 @@ export function approvedLetterFromIssue(event, comments, maintainers) {
 
   return {
     ...submission,
-    publishedAt: reply.createdAt,
-    reply: reply.body,
+    publishedAt: reply?.createdAt
+      ?? assertIsoDate(event.issue.updated_at ?? submission.submittedAt, 'issue updated_at'),
+    reply: reply?.body ?? '',
   };
 }
 
 export function renderHugoMarkdown(letter) {
   const title = `来信 · ${letter.displayName}`;
 
-  return [
+  const frontMatter = [
     '---',
     `title: ${yamlString(title)}`,
     `date: ${yamlString(letter.submittedAt)}`,
@@ -174,11 +173,9 @@ export function renderHugoMarkdown(letter) {
     `source_path: ${yamlString(letter.sourcePath)}`,
     'message: |-',
     yamlBlock(letter.message),
-    'reply: |-',
-    yamlBlock(letter.reply),
-    '---',
-    '',
-  ].join('\n');
+  ];
+  if (letter.reply) frontMatter.push('reply: |-', yamlBlock(letter.reply));
+  return [...frontMatter, '---', ''].join('\n');
 }
 
 export function outputFilename(letter) {

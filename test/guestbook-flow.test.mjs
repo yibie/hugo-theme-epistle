@@ -6,7 +6,7 @@ import {
   renderHugoMarkdown,
 } from '../packages/hugo-publisher/src/index.mjs';
 
-test('moves an approved private submission from Worker issue to public Hugo data', async () => {
+test('moves an approved submission from Worker issue to public Hugo data without an author reply', async () => {
   let privateIssue;
   const handler = createHandler({
     fetch: async (url, init) => {
@@ -30,7 +30,7 @@ test('moves an approved private submission from Worker issue to public Hugo data
   form.set('display_name', '纸飞机');
   form.set('email', 'private@example.com');
   form.set('message', '<script>alert(1)</script>\n{{< unsafe >}}');
-  form.set('publish_consent', 'on');
+  form.set('publish_consent', 'true');
   form.set('source_path', '/posts/about-that-afternoon/');
   form.set('cf-turnstile-response', 'valid-token');
 
@@ -60,17 +60,11 @@ test('moves an approved private submission from Worker issue to public Hugo data
       label: { name: 'publish' },
       issue: {
         body: privateIssue.body,
+        updated_at: '2026-07-28T09:00:00Z',
         labels: [{ name: 'guestbook' }, { name: 'publish' }],
       },
     },
-    [
-      {
-        id: 1,
-        body: '/reply\n谢谢你的来信。',
-        created_at: '2026-07-28T09:00:00Z',
-        user: { login: 'owner' },
-      },
-    ],
+    [],
     'owner',
   );
   const markdown = renderHugoMarkdown(letter);
@@ -78,5 +72,6 @@ test('moves an approved private submission from Worker issue to public Hugo data
   assert.match(markdown, /  <script>alert\(1\)<\/script>/);
   assert.match(markdown, /  \{\{< unsafe >\}\}/);
   assert.match(markdown, /source_path: "\/posts\/about-that-afternoon\/"/);
+  assert.doesNotMatch(markdown, /^reply:/m);
   assert.doesNotMatch(markdown, /private@example\.com/);
 });

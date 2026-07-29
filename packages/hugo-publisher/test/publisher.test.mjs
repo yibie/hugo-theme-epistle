@@ -28,6 +28,7 @@ function event(body = marker()) {
     label: { name: 'publish' },
     issue: {
       body,
+      updated_at: '2026-07-28T09:30:00Z',
       labels: [{ name: 'guestbook' }, { name: 'publish' }],
     },
   };
@@ -66,6 +67,16 @@ test('builds deterministic Hugo front matter without private email', () => {
   assert.equal(markdown.endsWith('---\n'), true);
 });
 
+test('publishes an approved comment without an author reply', () => {
+  const letter = approvedLetterFromIssue(event(), [], 'owner');
+  const markdown = renderHugoMarkdown(letter);
+
+  assert.equal(letter.reply, '');
+  assert.equal(letter.publishedAt, '2026-07-28T09:30:00.000Z');
+  assert.doesNotMatch(markdown, /^reply:/m);
+  assert.doesNotMatch(markdown, /private@example\.com/);
+});
+
 test('keeps legacy v1 submissions publishable without an article source', () => {
   const { sourcePath, ...legacySubmission } = submission;
   const parsed = parseSubmission(marker(legacySubmission));
@@ -91,11 +102,9 @@ test('rejects publication without explicit consent', () => {
   );
 });
 
-test('rejects replies from untrusted accounts', () => {
-  assert.throws(
-    () => approvedLetterFromIssue(event(), comments, 'someone-else'),
-    /no \/reply comment/,
-  );
+test('ignores replies from untrusted accounts', () => {
+  const letter = approvedLetterFromIssue(event(), comments, 'someone-else');
+  assert.equal(letter.reply, '');
 });
 
 test('uses the latest maintainer reply', () => {

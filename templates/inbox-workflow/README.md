@@ -15,12 +15,15 @@ Configure:
 - Variable `GUESTBOOK_SYSTEM_REF`: required 40-character commit SHA from a
   reviewed Epistle release.
 
-The maintainer records the public response as an issue comment:
+The maintainer may record an optional public response as an issue comment:
 
 ```text
 /reply
 这里写准备公开的回复。
 ```
 
-Only then add the `publish` label. The workflow refuses submissions without
-explicit publication consent and never copies the private email field.
+Add the `publish` label when the visitor's message is ready to publish. A
+`/reply` comment is optional. The current form clearly states that submissions
+may be excerpted publicly and records that notice in the v1 marker; legacy
+submissions without that record remain private. The workflow never copies the
+private email field.
