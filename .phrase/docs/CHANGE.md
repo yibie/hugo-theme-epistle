@@ -1,6 +1,7 @@
 # Change Index
 
 ## phase-cloudflare-guestbook-monorepo-20260728
+- `change036` — `task_*`：实际 Issue、同仓库 PR、部署、幂等重触发与线上文章完成验证（task015）
 - `change035` — 生产 Hugo 源码与 Actions：迁入现有私人 inbox 并完成首次自动部署（task015）
 - `change034` — Hugo 发布器与测试：固定无回复来信的 lastmod，重复批准不再制造空变更（task015）
 - `change033` — workflow 模板、README、测试与 phase 文档：收敛为同一私人仓库审核和维护源码（task015）
