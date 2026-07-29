@@ -1096,6 +1096,10 @@ body[data-dappled="off"] .dappled-layer {
   padding: 1.6rem 0;
 }
 
+.correspondence .guestbook-entry:last-child {
+  border-bottom: 0;
+}
+
 .guestbook-entry__meta {
   color: var(--color-meta);
   font-size: 0.78rem;

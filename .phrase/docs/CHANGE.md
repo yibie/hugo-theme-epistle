@@ -1,6 +1,8 @@
 # Change Index
 
 ## phase-cloudflare-guestbook-monorepo-20260728
+- `change032` — `task_*`、视觉状态：确认往来末尾只保留导航分隔线并完成验收（task014）
+- `change031` — `main.css`、`task_*`：移除往来末尾与导航之间的重复分隔线（task014）
 - `change030` — `task_*`、视觉状态与博客来信：首封无回复往来上线并完成验证（task013）
 - `change029` — 表单、Worker、发布器与说明：以公开提示替代复选框并让回信可选（task013）
 - `change028` — `spec_*`、`plan_*`、`task_*` 与测试：锁定提交即知悉和无回复发布契约（task013）
