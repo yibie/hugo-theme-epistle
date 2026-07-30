@@ -1,7 +1,7 @@
 # Spec — Cloudflare Guestbook Monorepo
 
 ## Summary
-把当前 Hugo 主题仓库扩展为保持主题根目录兼容的 monorepo，并交付一条完整纵切：匿名访客经 Cloudflare Worker 投递来信，来信进入私人 GitHub Issues；站长批准后，GitHub Actions 生成 Hugo Markdown PR；Epistle 主题展示获准公开的来信与可选回信。
+把当前 Hugo 主题仓库扩展为保持主题根目录兼容的 monorepo，并交付一条完整纵切：匿名访客经 Cloudflare Worker 投递来信，来信进入私人 GitHub Issues；站长添加 `publish` 标签后，GitHub Actions 将 Hugo Markdown 直接提交到私人源码仓库并部署；Epistle 主题展示获准公开的来信与可选回信。
 
 ## Goals & Non-goals
 
@@ -10,7 +10,7 @@
 - Cloudflare Worker 是唯一公开写入口。
 - 访客无需账号或勾选许可；表单显著说明来信可能被摘录公开，寄出即表示知悉。
 - 私人 GitHub Issues 承担收件、状态和审核。
-- 同一个私人仓库保存 Issues 与生产 Hugo 源码，批准发布只在仓库内生成 PR。
+- 同一个私人仓库保存 Issues 与生产 Hugo 源码，`publish` 标签是最终批准动作，无需人工合并 PR。
 - `publish` 标签只在投递来自新版告知表单时触发 Hugo 内容生成，作者回复可选。
 - 首版发布器支持 Hugo，同时把批准数据格式稳定为版本化契约。
 - 不把邮箱、IP、验证码或内部 Issue 信息写入公开内容。
@@ -42,7 +42,7 @@
 
 ### Flow 4：站长批准发布
 - 操作：确认来信来自已展示公开提示的表单后添加 `publish` 标签；公开版回信可选。
-- 反馈：Action 在同一个私人仓库生成 Hugo Markdown PR，公开字段仅包括显示称呼、来信、可选回信和必要日期。
+- 反馈：Action 将 Hugo Markdown 直接提交到同一个私人仓库的 `main` 并触发部署，公开字段仅包括显示称呼、来信、可选回信和必要日期。
 - 失败：旧投递未记录告知、数据格式不合法时 Action 失败并在 Issue 中给出可修复原因，不创建内容。
 
 ### Flow 5：读者浏览公开往来
@@ -101,7 +101,7 @@
 - 上一封与下一封渲染在往来之后，上一封靠左、下一封靠右。
 - 当前主题的既有首页、文章页、CSS 与 JS 路径保持兼容。
 - README 包含部署、Secrets、权限、回滚和 Hugo 接入说明。
-- 私人仓库合并源码 PR 后构建 Hugo，并以仅作用于公开站点仓库的 Deploy Key 推送静态产物。
+- 私人仓库收到批准内容提交后构建 Hugo，并以仅作用于公开站点仓库的 Deploy Key 推送静态产物。
 
 ## Sources
 - 用户确认：使用 monorepo 管理；初版兼容 Hugo；后续可增加更多博客系统；Cloudflare 作为不变边界。

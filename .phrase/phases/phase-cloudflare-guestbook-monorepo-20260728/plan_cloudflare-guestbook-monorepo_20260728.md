@@ -11,7 +11,7 @@
    - 使用最小权限凭据在私人 inbox 仓库创建结构化 Issue。
 4. **交付 Hugo 发布纵切**
    - 从已批准 Issue 提取版本化数据。
-   - `publish` 标签触发 Action，生成 Hugo Markdown PR 或可审阅变更。
+   - `publish` 标签触发 Action，将 Hugo Markdown 直接提交到私人源码仓库并部署。
 5. **交付 Epistle 展示适配**
    - 加入留言表单 partial、留言板 section 模板、样式与 exampleSite fixture。
    - 在文章末尾提供留言入口，并让桌面留言表单使用完整信纸宽度与紧凑字段节奏。
@@ -21,7 +21,7 @@
    - 单元/集成测试、Hugo 构建、安全检查、平台凭据检查和可回滚部署。
 7. **收敛生产仓库**
    - 现有私人 inbox 同时保存生产 Hugo 源码。
-   - `publish` 标签在同仓库创建内容 PR，合并后以专用 Deploy Key 更新公开静态仓库。
+   - `publish` 标签作为最终批准，直接提交内容并以专用 Deploy Key 更新公开静态仓库。
 
 ## Scope
 
@@ -53,7 +53,7 @@
 ## Risks & Dependencies
 - 依赖 Cloudflare Worker、Turnstile 与 GitHub API 的可用性。
 - Worker 需要最小权限、仅作用于私人 inbox 仓库的凭据。
-- 私人仓库需要允许 Actions 创建 PR；公开站点仓库只授予一把可写 Deploy Key。
+- 私人仓库的发布 Action 需要 Contents 与 Actions 写权限；公开站点仓库只授予一把可写 Deploy Key。
 - GitHub Issue 文本是外部输入，Action 必须按不可信数据处理，禁止直接拼接 shell。
 - 示例站允许 raw HTML，匿名正文禁止经过 Hugo `.Content` 或 Markdown 渲染。
 - Cloudflare/GitHub 账户配置与 Secret 可能无法在本地自动完成；代码必须支持可重复部署与明确手动步骤。

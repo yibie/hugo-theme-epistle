@@ -50,8 +50,8 @@
 4. Hugo 发布器以 `submissionId` 生成稳定文件路径。
 5. 生成内容只包含公开白名单字段，匿名正文只进入 front matter 字符串，并以 `source_path` 保留文章归属。
 6. 专用 Hugo 模板按纯文本渲染，禁止 `.Content`、`markdownify` 和 `safeHTML`。
-7. 使用仓库自身的短期 `GITHUB_TOKEN` 在同一私人仓库创建可审阅 PR；无回复时以投递时间、回复时以回复时间作为稳定 `lastmod`，重复触发安全退出。
-8. 人工合并后构建 Hugo，并用只对公开站点仓库有效的 Deploy Key 推送静态产物。
+7. 使用仓库自身的短期 `GITHUB_TOKEN` 将批准内容直接提交到 `main`；无回复时以投递时间、回复时以回复时间作为稳定 `lastmod`，重复触发安全退出。
+8. 由于 `GITHUB_TOKEN` 推送不会串联触发其他 workflow，发布 Action 显式 dispatch `deploy.yml`，再由只对公开站点仓库有效的 Deploy Key 推送静态产物。
 
 ## Interfaces & APIs
 

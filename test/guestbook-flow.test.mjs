@@ -77,15 +77,19 @@ test('moves an approved submission from Worker issue to public Hugo data without
   assert.doesNotMatch(markdown, /private@example\.com/);
 });
 
-test('publishes approved letters into the private inbox repository itself', async () => {
+test('commits approved letters directly and dispatches deployment', async () => {
   const workflow = await readFile(
     new URL('../templates/inbox-workflow/publish-hugo.yml', import.meta.url),
     'utf8',
   );
 
+  assert.match(workflow, /actions: write/);
   assert.match(workflow, /contents: write/);
-  assert.match(workflow, /pull-requests: write/);
   assert.match(workflow, /GH_TOKEN: \$\{\{ github\.token \}\}/);
-  assert.match(workflow, /--repo "\$GITHUB_REPOSITORY"/);
-  assert.doesNotMatch(workflow, /BLOG_PUBLISH_TOKEN|BLOG_REPOSITORY/);
+  assert.match(workflow, /git push origin "HEAD:\$\{base\}"/);
+  assert.match(workflow, /gh workflow run deploy\.yml/);
+  assert.doesNotMatch(
+    workflow,
+    /BLOG_PUBLISH_TOKEN|BLOG_REPOSITORY|pull-requests|gh pr|guestbook\/issue-/,
+  );
 });
