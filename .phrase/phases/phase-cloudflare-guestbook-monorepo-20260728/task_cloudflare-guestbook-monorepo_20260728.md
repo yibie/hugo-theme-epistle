@@ -30,4 +30,4 @@ task014 [x] 场景:读者在往来结束后只看到一条通往相邻信件导�
 
 task015 [x] 场景:维护者只管理一个私人仓库即可审核来信和维护博客源码 | Given:现有私人 inbox 仓库为空+生产 Hugo 源码仅在本机 | When:初始化源码并安装发布与部署工作流 | Then:publish 标签在同仓库创建无私人字段的 PR+合并 main 自动更新公开站点+Worker Token 无需源码权限 | 验证:模板回归测试+Hugo 干净构建+GitHub Actions 实际运行+线上页面检查
 
-task016 [ ] 场景:维护者批准来信后无需再合并自动 PR | Given:私人 Issue 已准备好公开内容+可选 `/reply` 已写在 publish 前 | When:添加 `publish` 标签 | Then:Action 直接提交无私人字段的 Hugo 内容到 main+显式触发部署+无内容变化时安全退出 | 验证:workflow 回归断言+GitHub Actions 托管运行+公开仓库与线上页面检查
+task016 [x] 场景:维护者批准来信后无需再合并自动 PR | Given:私人 Issue 已准备好公开内容+可选 `/reply` 已写在 publish 前 | When:添加 `publish` 标签 | Then:Action 直接提交无私人字段的 Hugo 内容到 main+显式触发部署+无内容变化时安全退出 | 验证:workflow 回归断言+GitHub Actions 托管运行+公开仓库与线上页面检查

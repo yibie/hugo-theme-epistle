@@ -1,6 +1,7 @@
 # Change Index
 
 ## phase-cloudflare-guestbook-monorepo-20260728
+- `change038` — 生产 workflow、README 与 `task_*`：移除 PR 权限并完成托管发布/部署验证（task016）
 - `change037` — workflow 模板、README、测试与 phase 文档：publish 直接提交 main 并触发部署，不再创建 PR（task016）
 - `change036` — `task_*`：实际 Issue、同仓库 PR、部署、幂等重触发与线上文章完成验证（task015）
 - `change035` — 生产 Hugo 源码与 Actions：迁入现有私人 inbox 并完成首次自动部署（task015）
