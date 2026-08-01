@@ -1,0 +1,10 @@
+# Change Log — Wanglai / 往来
+
+change008 日期:2026-08-01 | 文件:https://github.com/yibie/wanglai | 操作:Add | 影响:Wanglai v0.1.0 公共首发 | 说明:发布 acc8b719 的 v0.1.0 tag/release，main 与 tag CI 均通过，代码与安全审查零阻塞且 Secret 扫描无命中 | 关联:task008
+change007 日期:2026-08-01 | 文件:/Users/chenyibin/Documents/prj/wanglai/README.md,docs/install.md,docs/operations.md,.github/workflows/ci.yml,package*.json,templates/private-inbox | 操作:Modify | 影响:首发安装、运维、权限与持续验证 | 说明:交付 20 分钟自托管路径、Git-only 撤回说明、v0.1.0 元数据及固定官方 SHA/校验和的只读 CI | 关联:task007
+change006 日期:2026-08-01 | 文件:/Users/chenyibin/Documents/prj/wanglai/scripts/withdraw.sh,test/withdraw.test.mjs | 操作:Add | 影响:公开往来撤回与 Git 审计 | 说明:仅允许当前同步分支上的单文件 Wanglai 发布提交，经 git revert 生成反向提交并 push，脏工作区和错误目标提前停止 | 关联:task006
+change005 日期:2026-08-01 | 文件:/Users/chenyibin/Documents/prj/wanglai/layouts/partials/wanglai,assets/wanglai,exampleSite,test/hugo-module.test.mjs,.omx/state/wanglai/ralph-progress.json | 操作:Add | 影响:跨主题 Hugo Module 与文章内往来 | 说明:交付继承宿主主题的响应式往来 partial、可访问原生表单、独立 Turnstile 实例和 94 分桌面/移动视觉验收 | 关联:task005
+change004 日期:2026-08-01 | 文件:/Users/chenyibin/Documents/prj/wanglai/packages/hugo-publisher,templates/private-inbox,test/publish-flow.test.mjs,package.json | 操作:Add | 影响:私人 inbox 跨仓库自动发布 | 说明:以首条可信回复和 publish 标签生成单一净化 Markdown，经 Deploy Key 直推 Hugo 源码并回写可去重的发布提交 | 关联:task004
+change003 日期:2026-08-01 | 文件:/Users/chenyibin/Documents/prj/wanglai/apps/worker,package*.json | 操作:Add | 影响:匿名私人投递入口 | 说明:交付无运行时依赖的 Worker，验证 CORS、请求边界、Turnstile、私有 inbox 与通用错误并写入 wanglai:v1 Issue | 关联:task003
+change002 日期:2026-08-01 | 文件:/Users/chenyibin/Documents/prj/wanglai/LICENSE,docs/data-contract.md,package*.json,packages/hugo-publisher | 操作:Add | 影响:独立仓库与 v1 数据契约 | 说明:建立 MIT monorepo、wanglai:v1 公开白名单及旧 Epistle marker 只读兼容并通过契约测试 | 关联:task002
+change001 日期:2026-08-01 | 文件:spec_wanglai-standalone_20260801.md,plan_wanglai-standalone_20260801.md,task_wanglai-standalone_20260801.md | 操作:Modify | 影响:实施阶段入口 | 说明:确认 Spec/Plan 并将独立仓库、Worker、跨仓库发布、Hugo Module、Git revert 撤回与首发拆为原子任务 | 关联:task001

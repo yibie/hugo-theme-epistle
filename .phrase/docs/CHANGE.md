@@ -1,5 +1,15 @@
 # Change Index
 
+## phase-wanglai-standalone-20260801
+- `change008` — 公共仓库、main/tag CI 与 Release：发布 Wanglai v0.1.0（task008）
+- `change007` — README、安装/运维文档、v0.1.0 元数据与只读 CI：固定权限、版本与排错路径（task007）
+- `change006` — Git revert 撤回脚本与临时仓库测试：仅撤回单文件发布提交并保留审计（task006）
+- `change005` — Hugo Module、前端资源、fixture 与视觉状态：文章归属、多表单和响应式 UI 验收通过（task005）
+- `change004` — 发布器、私人 inbox workflow 与端到端测试：Deploy Key 跨仓库直推并回写发布提交（task004）
+- `change003` — Worker、Wrangler 配置与测试：新增私有 inbox 预检的匿名投递入口（task003）
+- `change002` — 独立仓库、MIT、数据契约与 parser：冻结 wanglai:v1 并兼容旧 Epistle marker（task002）
+- `change001` — `spec_*`、`plan_*`、`task_*`：确认独立 Wanglai 实施边界并拆分首版任务（task001）
+
 ## phase-cloudflare-guestbook-monorepo-20260728
 - `change038` — 生产 workflow、README 与 `task_*`：移除 PR 权限并完成托管发布/部署验证（task016）
 - `change037` — workflow 模板、README、测试与 phase 文档：publish 直接提交 main 并触发部署，不再创建 PR（task016）

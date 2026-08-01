@@ -1,6 +1,7 @@
 # Phases Index
 
 ## Active Phases
+- `phase-wanglai-standalone-20260801` — 将“往来”抽取为主题无关、MIT 授权的 Hugo 自托管项目，并以 Git revert 作为唯一公开内容撤回机制。
 - `phase-cloudflare-guestbook-monorepo-20260728` — 以 Cloudflare Worker 为固定入口、私人 GitHub Issues 为收件箱、GitHub Actions 为发布流水线，交付 Hugo 首版留言板并保留未来博客适配边界。
 
 ## Completed Phases
