@@ -1,5 +1,6 @@
 # Change Log — Wanglai / 往来
 
+change009 日期:2026-08-02 | 文件:/Users/chenyibin/Documents/prj/wanglai/README.md,README.zh-CN.md,docs/{en,zh-CN},docs/*.md,templates/private-inbox/README.md | 操作:Modify | 影响:公开文档语言入口与安装路径 | 说明:以英文 README 为默认入口、简体中文为独立入口，安装/运维/数据契约保持同名双语结构，并保留旧 docs 路径作为语言选择页；提交 7cda085 且远端 CI 通过 | 关联:task009
 change008 日期:2026-08-01 | 文件:https://github.com/yibie/wanglai | 操作:Add | 影响:Wanglai v0.1.0 公共首发 | 说明:发布 acc8b719 的 v0.1.0 tag/release，main 与 tag CI 均通过，代码与安全审查零阻塞且 Secret 扫描无命中 | 关联:task008
 change007 日期:2026-08-01 | 文件:/Users/chenyibin/Documents/prj/wanglai/README.md,docs/install.md,docs/operations.md,.github/workflows/ci.yml,package*.json,templates/private-inbox | 操作:Modify | 影响:首发安装、运维、权限与持续验证 | 说明:交付 20 分钟自托管路径、Git-only 撤回说明、v0.1.0 元数据及固定官方 SHA/校验和的只读 CI | 关联:task007
 change006 日期:2026-08-01 | 文件:/Users/chenyibin/Documents/prj/wanglai/scripts/withdraw.sh,test/withdraw.test.mjs | 操作:Add | 影响:公开往来撤回与 Git 审计 | 说明:仅允许当前同步分支上的单文件 Wanglai 发布提交，经 git revert 生成反向提交并 push，脏工作区和错误目标提前停止 | 关联:task006

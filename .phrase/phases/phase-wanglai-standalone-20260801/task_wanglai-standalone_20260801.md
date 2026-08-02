@@ -15,3 +15,5 @@ task006 [x] 场景:作者可以安全撤回一条误公开往来且保留审计�
 task007 [x] 场景:Hugo 作者按文档可以完成安装、审核、升级和排错 | Given:GitHub+Cloudflare 授权可用 | When:按 README 创建私人 inbox、deploy key、Worker 与 Hugo Module | Then:约 20 分钟内完成测试来信+所有 Secrets/Vars/权限/限制和撤回路径有明确说明 | 验证:文档走查+链接/命令检查+依赖审计
 
 task008 [x] 场景:维护者发布首个可固定版本的 Wanglai 版本 | Given:task002-task007 完成+测试与安全审查通过 | When:创建公共 GitHub 仓库、推送 main 并发布语义化版本 | Then:源码可访问+CI 通过+release/tag 可固定使用+不包含私人数据或密钥 | 验证:GitHub Actions+release 页面+全量测试+Secret 扫描
+
+task009 [x] 场景:中英文读者使用自己的语言阅读 Wanglai 文档 | Given:现有 README 与 docs 中英文混合 | When:读者从 README 选择 English 或简体中文 | Then:README 与安装/运维/数据契约分别进入同语言版本+同名结构完整+内部链接无断链或跨语言跳转 | 验证:文档映射检查+Markdown 相对链接检查+语言残留检查+npm test
