@@ -823,7 +823,6 @@ body[data-dappled="off"] .dappled-layer {
   background-size: 18px 18px, 23px 23px;
   opacity: calc(var(--dappled-enabled) * var(--dappled-grain-opacity));
   mix-blend-mode: soft-light;
-  animation: dappledNoise 2.2s steps(2) infinite;
 }
 
 .layout,
@@ -874,15 +873,6 @@ body[data-dappled="off"] .dappled-layer {
 @keyframes dappledDrift {
   0% { transform: translate3d(0, 0, 0) scale(1); }
   100% { transform: translate3d(-1.8rem, 1.2rem, 0) scale(1.02); }
-}
-
-@keyframes dappledNoise {
-  0% { transform: translate3d(0, 1rem, 0); }
-  20% { transform: translate3d(-0.75rem, -0.75rem, 0); }
-  40% { transform: translate3d(0.5rem, 1.25rem, 0); }
-  60% { transform: translate3d(-1rem, 0.25rem, 0); }
-  80% { transform: translate3d(0.75rem, -1rem, 0); }
-  100% { transform: translate3d(-0.5rem, 0, 0); }
 }
 
 @media (max-width: 768px) {
