@@ -43,11 +43,7 @@
 <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}?v={{ $assetVersion }}">
 {{- end }}
 
-<!-- 中文 Web 字体：思源宋体（正文）+ 齐伋体（标题）+ 霞鹜文楷（签名）-->
-<link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/syst/dist/SourceHanSerifCN/result.css">
-<link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/hldqjt/dist/qiji-fallback/result.css">
-<link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/lywkpmydb/dist/LXGWWenKaiMonoScreen/result.css">
-
+<!-- 站点显式配置时才加载外部字体；主题默认使用系统安全字体。 -->
 {{ with .Site.Params.googleFonts }}
 <link href="{{ . }}" rel="stylesheet">
 {{ end }}

@@ -1,5 +1,8 @@
 # Change Log — Phase: unified-dappled-layer-20260402
 
+change023 日期:2026-08-02 | 文件:.phrase/docs/ISSUES.md,.phrase/phases/phase-unified-dappled-layer-20260402,.omx/state/typography/ralph-progress.json | 操作:Modify | 影响:task008 与 issue002 验收记录 | 说明:记录字体 CDN 404 根因、系统字体取舍、构建与 94 分视觉验收结果 | 关联:task008
+change022 日期:2026-08-02 | 文件:static/css/main.css | 操作:Modify | 影响:正文、标题与落款字体栈 | 说明:让系统西文衬线字体与系统中文宋体分工混排，并将标题和落款收敛为系统楷体回退 | 关联:task008
+change021 日期:2026-08-02 | 文件:layouts/partials/head.html | 操作:Modify | 影响:主题默认字体资源加载 | 说明:删除三条已失效的中文字体 CDN 引用，保留站点显式配置外部字体的兼容入口 | 关联:task008
 change020 日期:2026-08-02 | 文件:/Users/chenyibin/Documents/blog/.github/workflows/deploy.yml | 操作:Modify | 影响:生产博客主题固定版本 | 说明:将生产部署固定到主题修复提交 2d8aa2c，博客提交 34df588 的 Actions 构建和线上 CDP 验证通过 | 关联:task007
 change019 日期:2026-08-02 | 文件:static/css/main.css | 操作:Modify | 影响:统一光影颗粒层 | 说明:删除覆盖全 viewport 的 dappledNoise 离散位移动画及其废弃 keyframes，保留静态纸纹和连续树影动画 | 关联:task007
 change001 日期:2026-04-02 | 文件:.phrase/phases/phase-unified-dappled-layer-20260402/spec_unified-dappled-layer_20260402.md | 操作:Modify | 影响:阶段目标与验收口径 | 说明:根据 CSS-Tricks 与 theme-switch 的最新结论，补充 fixed overlay、body data 状态源和 unified layer 目标 | 关联:task005

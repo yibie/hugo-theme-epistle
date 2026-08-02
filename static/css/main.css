@@ -14,9 +14,9 @@
   --color-fold:    rgba(28, 35, 51, 0.08);
   --shadow-paper:  0 2px 20px rgba(0, 0, 0, 0.08);
 
-  --font-body:     "Source Han Serif CN VF", "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", "宋体", serif;
-  --font-title:     "LXGW WenKai Mono Screen", "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
-  --font-signature: "LXGW WenKai Mono Screen", "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
+  --font-body:     "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Noto Serif", "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif CJK SC", "SimSun", "宋体", serif;
+  --font-title:     "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
+  --font-signature: "Kaiti SC", "Kaiti TC", "STKaiti", "KaiTi", "楷体", serif;
 
   --width-content: 44rem;
   --width-sidebar: 14rem;

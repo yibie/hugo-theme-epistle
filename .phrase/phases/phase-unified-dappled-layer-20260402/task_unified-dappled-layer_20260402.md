@@ -13,4 +13,8 @@ task006 [x] 场景:读者阅读含 AI 等英文片段的中文标题时不再感
 
 task007 [x] 场景:访客静置阅读时页面不再出现颗粒纹理引发的周期性抖动 | Given:统一光影层启用+颗粒层覆盖 viewport | When:打开首页并持续观察 | Then:颗粒保持静态+信纸与正文无布局偏移+树影和光线仍连续缓慢运动 | 验证:线上 CDP 动画检查+Performance Trace CLS+visual-verdict+真实博客构建 | 备注:关联 issue001
 
+task008 [x] 场景:访客阅读中英文混排正文时字形协调且不依赖中文字体 CDN | Given:主题只使用设备内置字体+正文同时包含中文、英文缩写和数字 | When:打开文章页 | Then:英文使用系统衬线字体+中文使用系统宋体回退+页面不请求主题默认的外部中文字体资源 | 验证:真实博客构建+浏览器网络请求检查+前后截图 visual-verdict | 备注:关联 issue002
+
 > 当前进展（2026-04-06）：已将当前阶段文档更新为“theme-switch 架构 + CSS-Tricks 效果”的最新结论；代码已收敛为单一 `dappled-layer` fixed overlay，移除 `paper-light` 与 `shadow_style` 路线，`assets/js/main.js` 回退为仅保留基础交互逻辑。`hugo --source exampleSite --themesDir ../.. --destination /tmp/epistle_build` 构建通过，并已验证 `dappledLight = false` 时输出 `data-dappled="off"`。另外，标题中的连续拉丁字母现已通过 `title-text` partial 包装为独立 span，并在 CSS 中使用单独的 `Cormorant Garamond` 字体栈处理。task001 / task002 / task004 待人工视觉验收后勾选。
+
+> 排版更新（2026-08-02）：task008 已删除主题默认中文字体 CDN，并改用系统西文衬线字体到系统中文宋体的回退顺序。真实博客和示例站构建通过，浏览器网络请求中不再出现中文字体 CDN，visual-verdict 94/100。

@@ -73,6 +73,9 @@
 - `change011` — `assets/css/main.css, assets/js/main.js`：加深阴影对比，作为结构排查的临时探针（task001）
 
 ## phase-unified-dappled-layer-20260402
+- `change023` — issue/task 与视觉状态：记录字体 CDN 404 根因、系统字体方案及 94 分视觉验收（task008 / issue002）
+- `change022` — `static/css/main.css`：正文改用系统西文衬线字体与系统中文宋体分工混排（task008 / issue002）
+- `change021` — `layouts/partials/head.html`：删除主题默认的三条中文字体 CDN 引用（task008 / issue002）
 - `change020` — 生产博客 workflow：固定主题修复提交并完成 Actions/线上 CDP 验证（task007 / issue001）
 - `change019` — `static/css/main.css`：移除颗粒层离散位移动画，消除周期性视觉抖动（task007 / issue001）
 - `change001` — `spec_*`：更新 fixed overlay、body data 状态源与统一光影目标（task005）
