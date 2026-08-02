@@ -11,6 +11,6 @@ task004 [ ] 场景:低动效或低能力环境下统一光影仍可接受 | Give
 task005 [x] 场景:主题维护者理解 unified dappled layer 的原理与边界 | Given:维护者阅读 README 或 phase 文档 | When:查看实现说明 | Then:能理解为何要统一为单层、CSS-Tricks 提供了什么效果方法、theme-switch 提供了什么架构方法、如何关闭和验证 | 验证:文档审阅
 task006 [x] 场景:读者阅读含 AI 等英文片段的中文标题时不再感到字形脱节 | Given:文章标题同时包含中文与连续拉丁字母 | When:打开首页、文章页或上一封下一封导航 | Then:英文片段使用单独的 serif 字体并与中文标题保持更平顺的视觉关系 | 验证:exampleSite 构建输出检查 + 手动检查
 
-task007 [ ] 场景:访客静置阅读时页面不再出现颗粒纹理引发的周期性抖动 | Given:统一光影层启用+颗粒层覆盖 viewport | When:打开首页并持续观察 | Then:颗粒保持静态+信纸与正文无布局偏移+树影和光线仍连续缓慢运动 | 验证:线上 CDP 动画检查+Performance Trace CLS+visual-verdict+真实博客构建 | 备注:关联 issue001
+task007 [x] 场景:访客静置阅读时页面不再出现颗粒纹理引发的周期性抖动 | Given:统一光影层启用+颗粒层覆盖 viewport | When:打开首页并持续观察 | Then:颗粒保持静态+信纸与正文无布局偏移+树影和光线仍连续缓慢运动 | 验证:线上 CDP 动画检查+Performance Trace CLS+visual-verdict+真实博客构建 | 备注:关联 issue001
 
 > 当前进展（2026-04-06）：已将当前阶段文档更新为“theme-switch 架构 + CSS-Tricks 效果”的最新结论；代码已收敛为单一 `dappled-layer` fixed overlay，移除 `paper-light` 与 `shadow_style` 路线，`assets/js/main.js` 回退为仅保留基础交互逻辑。`hugo --source exampleSite --themesDir ../.. --destination /tmp/epistle_build` 构建通过，并已验证 `dappledLight = false` 时输出 `data-dappled="off"`。另外，标题中的连续拉丁字母现已通过 `title-text` partial 包装为独立 span，并在 CSS 中使用单独的 `Cormorant Garamond` 字体栈处理。task001 / task002 / task004 待人工视觉验收后勾选。

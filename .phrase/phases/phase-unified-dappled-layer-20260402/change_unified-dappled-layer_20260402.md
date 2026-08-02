@@ -1,5 +1,6 @@
 # Change Log — Phase: unified-dappled-layer-20260402
 
+change020 日期:2026-08-02 | 文件:/Users/chenyibin/Documents/blog/.github/workflows/deploy.yml | 操作:Modify | 影响:生产博客主题固定版本 | 说明:将生产部署固定到主题修复提交 2d8aa2c，博客提交 34df588 的 Actions 构建和线上 CDP 验证通过 | 关联:task007
 change019 日期:2026-08-02 | 文件:static/css/main.css | 操作:Modify | 影响:统一光影颗粒层 | 说明:删除覆盖全 viewport 的 dappledNoise 离散位移动画及其废弃 keyframes，保留静态纸纹和连续树影动画 | 关联:task007
 change001 日期:2026-04-02 | 文件:.phrase/phases/phase-unified-dappled-layer-20260402/spec_unified-dappled-layer_20260402.md | 操作:Modify | 影响:阶段目标与验收口径 | 说明:根据 CSS-Tricks 与 theme-switch 的最新结论，补充 fixed overlay、body data 状态源和 unified layer 目标 | 关联:task005
 change002 日期:2026-04-02 | 文件:.phrase/phases/phase-unified-dappled-layer-20260402/plan_unified-dappled-layer_20260402.md | 操作:Modify | 影响:实施路径 | 说明:将阶段计划调整为先收敛架构，再实现 unified layer，并尽量移除非必要 JS | 关联:task005
