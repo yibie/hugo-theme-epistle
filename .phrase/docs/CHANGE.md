@@ -1,6 +1,7 @@
 # Change Index
 
 ## phase-wanglai-standalone-20260801
+- `change009` — README 与安装/运维/数据契约双语拆分：英文默认入口、简体中文独立入口并保留旧链接（task009）
 - `change008` — 公共仓库、main/tag CI 与 Release：发布 Wanglai v0.1.0（task008）
 - `change007` — README、安装/运维文档、v0.1.0 元数据与只读 CI：固定权限、版本与排错路径（task007）
 - `change006` — Git revert 撤回脚本与临时仓库测试：仅撤回单文件发布提交并保留审计（task006）
@@ -72,6 +73,8 @@
 - `change011` — `assets/css/main.css, assets/js/main.js`：加深阴影对比，作为结构排查的临时探针（task001）
 
 ## phase-unified-dappled-layer-20260402
+- `change020` — 生产博客 workflow：固定主题修复提交并完成 Actions/线上 CDP 验证（task007 / issue001）
+- `change019` — `static/css/main.css`：移除颗粒层离散位移动画，消除周期性视觉抖动（task007 / issue001）
 - `change001` — `spec_*`：更新 fixed overlay、body data 状态源与统一光影目标（task005）
 - `change002` — `plan_*`：调整为 theme-switch 架构 + CSS-Tricks 效果的实现路径（task005）
 - `change003` — `task_*`：更新任务口径与当前进展说明（task005）
