@@ -3,6 +3,9 @@
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 
+<!-- RSS feed discovery（Hugo 原生输出，路径为 /index.xml） -->
+<link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ .Site.Title }}">
+
 <!-- Open Graph / Telegram / 社交预览 -->
 {{- $ogTitle := cond .IsHome .Site.Title (printf "%s — %s" .Title .Site.Title) }}
 {{- $ogDesc := .Description | default .Site.Params.description }}
